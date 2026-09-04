@@ -181,6 +181,58 @@
     </div>
   </section>
 
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Key Contributions</h2>
+      <div class="columns is-multiline">
+        <div class="column is-3">
+          <div class="box has-text-centered" style="height: 100%;">
+            <span class="icon is-large" style="color: #2f6fb0;"><i class="fas fa-dice fa-2x"></i></span>
+            <p class="title is-6" style="margin-top: 0.75rem;">Genuinely Stochastic $H_\infty$ Game</p>
+            <p class="is-size-7 has-text-justified">
+              Each agent's dynamics are modeled as an It&ocirc; SDE, not an ODE. The coupled HJI equations gain a
+              genuine It&ocirc;-correction term absent from deterministic formulations, and reduce to them exactly
+              as the diffusion intensity vanishes.
+            </p>
+          </div>
+        </div>
+        <div class="column is-3">
+          <div class="box has-text-centered" style="height: 100%;">
+            <span class="icon is-large" style="color: #7b4fb0;"><i class="fas fa-brain fa-2x"></i></span>
+            <p class="title is-6" style="margin-top: 0.75rem;">Critic-Only Online IRL</p>
+            <p class="is-size-7 has-text-justified">
+              A single critic network per agent, tuned by a historical-data (experience-replay) adaptive law
+              re-derived via It&ocirc;'s formula, relaxes the persistence-of-excitation requirement while
+              preserving stability during learning.
+            </p>
+          </div>
+        </div>
+        <div class="column is-3">
+          <div class="box has-text-centered" style="height: 100%;">
+            <span class="icon is-large" style="color: #c07a1e;"><i class="fas fa-unlink fa-2x"></i></span>
+            <p class="title is-6" style="margin-top: 0.75rem;">Completely Model-Free</p>
+            <p class="is-size-7 has-text-justified">
+              An off-policy reformulation lumps the unknown input/diffusion channels into the agents' own
+              policies. No drift, input-channel, or diffusion knowledge is required &mdash; the extension is a
+              change of regressor, not of algorithm.
+            </p>
+          </div>
+        </div>
+        <div class="column is-3">
+          <div class="box has-text-centered" style="height: 100%;">
+            <span class="icon is-large" style="color: #1e8a72;"><i class="fas fa-shield-alt fa-2x"></i></span>
+            <p class="title is-6" style="margin-top: 0.75rem;">Mean-Square UUB Guarantee</p>
+            <p class="is-size-7 has-text-justified">
+              Tracking and critic-weight errors are proven ultimately uniformly bounded in the mean-square sense,
+              with an explicit noise-dependent bound that recovers the deterministic pathwise result as
+              $\Sigma_i \to 0$.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" style="background-color: #f5f5f5;">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
@@ -204,6 +256,24 @@
               measured state and the communication graph.
             </p>
           </div>
+
+          <div class="box has-text-left" style="margin-top: 1.75rem; border-left: 5px solid #1e8a72;">
+            <p class="title is-5" style="margin-bottom: 0.5rem;">
+              <span class="icon" style="color: #1e8a72;"><i class="fas fa-shield-alt"></i></span>
+              Theorem (Mean-Square UUB, Theorem 3.4)
+            </p>
+            <p class="content has-text-justified" style="margin-bottom: 0;">
+              Under the proposed adaptive law (eq. 3.78) and the history-stack rank condition, the closed-loop
+              tracking error $\delta_i$ and the critic weight error $\tilde W_i$ are ultimately uniformly bounded
+              <em>in the mean-square sense</em>, with an ultimate bound that reduces exactly to the deterministic
+              pathwise UUB result as the diffusion intensity $\Sigma_i \to 0$. The approximated value function,
+              control policy, and worst-case disturbance all converge to their optimal Nash-equilibrium
+              counterparts in mean square: $\mathbb{E}\|V_i^* - \hat V_i\|^2 < \epsilon_{V_i}$,
+              $\mathbb{E}\|u_i^* - \hat u_i\|^2 < \epsilon_{u_i}$, $\mathbb{E}\|\vartheta_i^* - \hat\vartheta_i\|^2 <
+              \epsilon_{\vartheta_i}$.
+            </p>
+          </div>
+
           <div class="columns is-centered is-vcentered" style="margin-top: 1.5rem;">
             <div class="column is-5">
               <img src="./images/graph.jpg" alt="Communication graph" style="width: 100%; border-radius: 8px;">
@@ -282,6 +352,58 @@
           <img src="./images/ablation.jpg" alt="Ablation study" style="width: 100%; border-radius: 8px;">
           <p class="has-text-centered is-size-6">Ablation: contribution of the RL component</p>
         </div>
+      </div>
+
+      <div class="content" style="margin-top: 2rem;">
+        <p class="has-text-centered is-size-6">
+          Disabling each component in turn, with topology, reference, noise realisation, and seed held fixed
+          (mean position-error norm $\bar{\|\delta\|}$ over $t>25\,$s; cost
+          $J=\sum_i\int_5^{50}(e_i^TQ_ie_i+u_i^{rT}R_{ii}u_i^r)\,dt$):
+        </p>
+        <div class="table-container" style="max-width: 720px; margin: 1rem auto 0;">
+          <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+              <tr>
+                <th>Variant</th>
+                <th class="has-text-centered">Cost $J$</th>
+                <th class="has-text-centered">$\bar{\|\delta\|}$ (m)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Proposed (full)</strong></td>
+                <td class="has-text-centered"><strong>4.38</strong></td>
+                <td class="has-text-centered"><strong>0.026</strong></td>
+              </tr>
+              <tr>
+                <td>Without Bellman-residual / replay terms</td>
+                <td class="has-text-centered">4.49</td>
+                <td class="has-text-centered">0.025</td>
+              </tr>
+              <tr>
+                <td>Without stabilizing term $\xi_i\Theta_i$</td>
+                <td class="has-text-centered" style="color:#c0392b;">diverges</td>
+                <td class="has-text-centered">&mdash;</td>
+              </tr>
+              <tr>
+                <td>Critic weights frozen at $\hat W_i(0)$</td>
+                <td class="has-text-centered" style="color:#c0392b;">diverges</td>
+                <td class="has-text-centered">&mdash;</td>
+              </tr>
+              <tr>
+                <td>Without learned policy $u_i^r$</td>
+                <td class="has-text-centered" style="color:#c0392b;">$1.5\times10^{8}$</td>
+                <td class="has-text-centered" style="color:#c0392b;">14.11</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="is-size-7 has-text-centered" style="color: #666; margin-top: 0.5rem;">
+          The model-based feedforward alone cannot stabilise the formation (error grows past 14&nbsp;m without the
+          learned policy); the stabilizing term is what keeps the closed loop out of the divergent region; and the
+          Bellman-residual / experience-replay terms lower the cost by a further $\sim$2.4% at equal tracking
+          accuracy.
+        </p>
       </div>
     </div>
   </section>
