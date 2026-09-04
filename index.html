@@ -137,6 +137,26 @@
 
   <section class="section">
     <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Simulation Video</h2>
+      <div class="content has-text-centered">
+        <p>
+          A MuJoCo visualization of the paper's exact experiment (Sec. Results): the virtual leader (gold beacon)
+          traces the serpentine reference while three follower WMRs, running the online IRL / $H_\infty$
+          critic-actor law with the paper's communication graph, self-assemble into the learned rigid formation.
+          The coloured curves are the resulting 2D trajectories (cf. Fig. 4.9 / <code>quy_dao.jpg</code>); the
+          white links show the live communication-graph edges converging to a fixed shape.
+        </p>
+      </div>
+      <video autoplay muted loop playsinline controls
+        style="width: 100%; max-width: 960px; display: block; margin: 1rem auto 0; border-radius: 10px;">
+        <source src="./static/videos/formation_demo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           <h2 class="title is-3">Abstract</h2>
