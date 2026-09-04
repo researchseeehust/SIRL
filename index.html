@@ -194,6 +194,16 @@
               drift dynamics of the augmented multi-agent system.
             </p>
           </div>
+          <div style="margin-top: 1.5rem;">
+            <img src="./images/algorithm_diagram.svg" alt="Block diagram of the online IRL / H-infinity critic-actor algorithm"
+              style="width: 100%; max-width: 1000px; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; padding: 0.5rem;">
+            <p class="has-text-centered is-size-6" style="margin-top: 0.5rem;">
+              Per-agent algorithm loop: the neighbourhood error feeds a critic network whose IRL Bellman residual and
+              replayed history drive the weight-adaptive law (eq. 3.78); the resulting critic weights parameterise
+              the $H_\infty$ policy and worst-case disturbance, which act on the WMR and close the loop through the
+              measured state and the communication graph.
+            </p>
+          </div>
           <div class="columns is-centered is-vcentered" style="margin-top: 1.5rem;">
             <div class="column is-5">
               <img src="./images/graph.jpg" alt="Communication graph" style="width: 100%; border-radius: 8px;">
