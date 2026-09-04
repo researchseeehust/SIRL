@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="Stochastic Integral Reinforcement Learning for Distributed H-infinity Optimal Formation Tracking of Multi-Agent Wheeled Mobile Robots">
+  <meta name="keywords"
+    content="Stochastic Integral Reinforcement Learning, Multi-Agent Systems, Wheeled Mobile Robots, H-infinity Control, Formation Tracking">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SIRL | Stochastic Integral Reinforcement Learning for Distributed H∞ Formation Tracking</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="#">
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-2 publication-title">
+              Stochastic Integral Reinforcement Learning for Distributed
+              $H_\infty$ Optimal Formation Tracking of Multi-Agent Wheeled Mobile Robots
+            </h1>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="#">Khanh Thai</a><sup>1,*</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://huy-quang-dao.github.io/">Huy Dao</a><sup>1,*</sup>,
+              </span>
+              <span class="author-block">
+                <a href="#">Nga Thi-Thuy Vu</a><sup>1</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Hanoi University of Science and Technology (HUST), Vietnam</span>
+            </div>
+            <p class="is-size-6" style="margin-top: 0.5rem; color: #555;">
+              <sup>*</sup>Equal contribution
+            </p>
+
+            <h1 class="title is-4 publication-title" style="margin-top: 1.5rem;">
+              Conference on Robot Learning (CoRL) 2026
+            </h1>
+
+            <div class="columns is-centered has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="./example.pdf" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://github.com/researchseeehust/SIRL" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img src="./images/quy_dao.jpg" alt="Multi-agent wheeled mobile robot formation trajectories"
+          style="width: 100%; border-radius: 10px;">
+        <h2 class="subtitle has-text-centered" style="margin-top: 1rem;">
+          Distributed $H_\infty$ optimal formation tracking for multi-agent wheeled mobile robots under
+          Itô process noise and worst-case disturbances.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              In this paper a distributed stochastic $H_\infty$ optimal tracking control problem for multi-agent
+              wheeled mobile robot systems is proposed, under both Itô process noise in the agent dynamics and
+              worst-case external disturbances. By reformulating the control task as a stochastic zero-sum game
+              problem, a decentralized framework is established wherein each agent interacts locally with its
+              neighbors and is influenced by disturbances. The solution involves a set of coupled stochastic
+              Hamilton–Jacobi–Isaacs equations, which gain a genuine Itô-correction term over their deterministic
+              counterpart and reduce to them exactly as the noise intensity vanishes. To derive an approximate
+              optimal policy, a critic-only neural network scheme is developed. A historical data-based update law
+              is employed to eliminate the need for persistence of excitation, thereby enhancing online learning
+              efficiency. Furthermore, the proposed approach does not require knowledge of the drift dynamics of the
+              augmented system. Simulation results are presented to demonstrate the effectiveness and real-time
+              capability of the proposed method.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background-color: #f5f5f5;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Method Overview</h2>
+          <div class="content has-text-justified">
+            <p>
+              We cast distributed formation tracking as a stochastic zero-sum game and solve the resulting coupled
+              stochastic HJI equations online with a critic-only integral reinforcement learning (IRL) scheme.
+              Historical data replace persistence-of-excitation requirements, and the controller does not need the
+              drift dynamics of the augmented multi-agent system.
+            </p>
+          </div>
+          <div class="columns is-centered is-vcentered" style="margin-top: 1.5rem;">
+            <div class="column is-5">
+              <img src="./images/graph.jpg" alt="Communication graph" style="width: 100%; border-radius: 8px;">
+              <p class="has-text-centered is-size-6" style="margin-top: 0.5rem;">Communication topology</p>
+            </div>
+            <div class="column is-7">
+              <img src="./images/disturbance_rejection.jpg" alt="Disturbance rejection"
+                style="width: 100%; border-radius: 8px;">
+              <p class="has-text-centered is-size-6" style="margin-top: 0.5rem;">Disturbance rejection performance</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Formation Tracking Results</h2>
+      <div class="content has-text-justified">
+        <p>
+          The proposed SIRL controller achieves accurate formation tracking for wheeled mobile robots under process
+          noise and adversarial disturbances. Position and orientation errors converge, while critic network weights
+          remain bounded during online learning.
+        </p>
+      </div>
+
+      <div class="columns is-multiline is-centered" style="margin-top: 1rem;">
+        <div class="column is-4">
+          <img src="./images/ex.jpg" alt="Position error ex" style="width: 100%; border-radius: 8px;">
+          <p class="has-text-centered is-size-6">$e_x$ tracking error</p>
+        </div>
+        <div class="column is-4">
+          <img src="./images/ey.jpg" alt="Position error ey" style="width: 100%; border-radius: 8px;">
+          <p class="has-text-centered is-size-6">$e_y$ tracking error</p>
+        </div>
+        <div class="column is-4">
+          <img src="./images/etheta.jpg" alt="Orientation error" style="width: 100%; border-radius: 8px;">
+          <p class="has-text-centered is-size-6">$e_\theta$ tracking error</p>
+        </div>
+        <div class="column is-6">
+          <img src="./images/enorm.jpg" alt="Error norm" style="width: 100%; border-radius: 8px;">
+          <p class="has-text-centered is-size-6">Position-error norm</p>
+        </div>
+        <div class="column is-6">
+          <img src="./images/noise_sensitivity.jpg" alt="Noise sensitivity" style="width: 100%; border-radius: 8px;">
+          <p class="has-text-centered is-size-6">Noise sensitivity analysis</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background-color: #f5f5f5;">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Online Critic Learning</h2>
+      <div class="content has-text-justified">
+        <p>
+          Critic neural-network weights converge online using historical data, without requiring persistence of
+          excitation. Ablation studies quantify the contribution of the reinforcement learning component.
+        </p>
+      </div>
+      <div class="columns is-multiline is-centered" style="margin-top: 1rem;">
+        <div class="column is-4">
+          <img src="./images/W1.jpg" alt="Critic weights W1" style="width: 100%; border-radius: 8px;">
+          <p class="has-text-centered is-size-6">Critic weights $W_1$</p>
+        </div>
+        <div class="column is-4">
+          <img src="./images/W2.jpg" alt="Critic weights W2" style="width: 100%; border-radius: 8px;">
+          <p class="has-text-centered is-size-6">Critic weights $W_2$</p>
+        </div>
+        <div class="column is-4">
+          <img src="./images/W3.jpg" alt="Critic weights W3" style="width: 100%; border-radius: 8px;">
+          <p class="has-text-centered is-size-6">Critic weights $W_3$</p>
+        </div>
+        <div class="column is-8">
+          <img src="./images/ablation.jpg" alt="Ablation study" style="width: 100%; border-radius: 8px;">
+          <p class="has-text-centered is-size-6">Ablation: contribution of the RL component</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">BibTeX</h2>
+      <div class="content">
+        <pre style="background-color: #f5f5f5; padding: 1.25rem; border-radius: 8px; overflow-x: auto; text-align: left;"><code>@inproceedings{thai2026sirl,
+  title={Stochastic Integral Reinforcement Learning for Distributed $H_\infty$ Optimal Formation Tracking of Multi-Agent Wheeled Mobile Robots},
+  author={Thai, Khanh and Dao, Huy and Vu, Nga Thi-Thuy},
+  booktitle={Conference on Robot Learning (CoRL)},
+  year={2026}
+}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+            <p>
+              This website template is adapted from
+              <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
