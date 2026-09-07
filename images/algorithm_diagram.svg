@@ -26,7 +26,7 @@
 <text x="970.0" y="265" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="12.6" font-weight="400" fill="#3a4552">ûᵢ (eq. 3.66)   ϑ̂ᵢ (eq. 3.67)</text>
 <rect x="550" y="221" width="240" height="96" rx="11" ry="11" fill="#eaf6ec" stroke="#2e8b3f" stroke-width="1.6"/>
 <text x="670.0" y="245" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="15.5" font-weight="700" fill="#16202c">WMR Kinematics (Plant)</text>
-<text x="670.0" y="265" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="12.6" font-weight="400" fill="#3a4552">ṗᵢ = Hᵢ(pᵢ)·[ûᵢ ; ϑ̂ᵢ ; noise]</text>
+<text x="670.0" y="265" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="12.6" font-weight="400" fill="#3a4552">ṗᵢ = Hᵢ(pᵢ) ηᵢ   (ηᵢ driven by ûᵢ, ϑ̂ᵢ, noise)</text>
 <line x1="300" y1="114" x2="340" y2="114" stroke="#3a4452" stroke-width="2.0" marker-end="url(#arrowhead)"/>
 <line x1="550" y1="114" x2="590" y2="114" stroke="#3a4452" stroke-width="2.0" marker-end="url(#arrowhead)"/>
 <line x1="810" y1="114" x2="850" y2="114" stroke="#3a4452" stroke-width="2.0" marker-end="url(#arrowhead)"/>
@@ -43,8 +43,8 @@
 <rect x="340.65" y="190.6" width="158.7" height="19.4" rx="4" ry="4" fill="#fbfbfd" opacity="0.9"/>
 <text x="420" y="204" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="12.4" font-weight="400" font-style="italic" fill="#9c3a30">state feedback  pᵢ, ηᵢ</text>
 <path d="M 195 166 C 230 267, 640 351, 850 301" fill="none" stroke="#7a8494" stroke-width="2.0" stroke-dasharray="6,5" marker-end="url(#arrowhead-grey)"/>
-<rect x="56" y="252.6" width="192.95" height="19.4" rx="4" ry="4" fill="#fbfbfd" opacity="0.9"/>
-<text x="60" y="266" text-anchor="start" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="12.4" font-weight="400" font-style="italic" fill="#7a8494">neighbour data  δⱼ, Ŵⱼ, ∇φⱼ</text>
+<rect x="56" y="252.6" width="302.55" height="19.4" rx="4" ry="4" fill="#fbfbfd" opacity="0.9"/>
+<text x="60" y="266" text-anchor="start" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="12.4" font-weight="400" font-style="italic" fill="#7a8494">neighbour data  δⱼ, ∇φⱼ (Θᵢ);  ûⱼ, ϑ̂ⱼ (ϱᵢ)</text>
 <rect x="20" y="364" width="700" height="340" rx="16" ry="16" fill="#fbfbfd" stroke="#c7ccd6" stroke-width="1.6"/>
 <text x="36" y="389" text-anchor="start" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="15.5" font-weight="700" fill="#2b3542">(b)  Critic Regressor &amp; History-Stack Construction</text>
 <rect x="48" y="416" width="185" height="84" rx="11" ry="11" fill="#eaf2fb" stroke="#2f6fb0" stroke-width="1.6"/>
@@ -60,8 +60,8 @@
 <line x1="468" y1="458" x2="503" y2="458" stroke="#3a4452" stroke-width="2.0" marker-end="url(#arrowhead)"/>
 <rect x="48" y="546" width="645" height="100" rx="11" ry="11" fill="#fcf1e2" stroke="#c07a1e" stroke-width="1.6"/>
 <text x="370.5" y="570" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="15.2" font-weight="700" fill="#16202c">History Stack  Zᵢ = { Δφ̄ᵢ¹, …, Δφ̄ᵢˡ },  rank(Zᵢ) = L</text>
-<text x="370.5" y="590" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="12.6" font-weight="400" fill="#3a4552">l ≥ L samples stored online — replaces persistence of excitation</text>
-<text x="370.5" y="607.5" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="12.6" font-weight="400" fill="#3a4552">verifiable, data-driven rank condition (Condition 3.1)</text>
+<text x="370.5" y="590" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="12.6" font-weight="400" fill="#3a4552">fixed size l > L samples — replaces persistence of excitation</text>
+<text x="370.5" y="607.5" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="12.6" font-weight="400" fill="#3a4552">verifiable, data-driven rank condition (l = 20 > L = 15 in Sec. Results)</text>
 <line x1="598" y1="500" x2="598" y2="542" stroke="#3a4452" stroke-width="2.0" marker-end="url(#arrowhead)"/>
 <path d="M 598 542 C 598 358, 1160 335, 1190 319" fill="none" stroke="#3a4452" stroke-width="2.0" marker-end="url(#arrowhead)"/>
 <rect x="853.8" y="346.6" width="172.39999999999998" height="19.4" rx="4" ry="4" fill="#fbfbfd" opacity="0.9"/>
@@ -73,16 +73,16 @@
 <text x="938.0" y="460" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="12.6" font-weight="400" fill="#3a4552">uⱼ = ûⱼ + eⱼ   (bounded exploration eⱼ)</text>
 <rect x="1118" y="416" width="300" height="78" rx="11" ry="11" fill="#e7f5f1" stroke="#1e8a72" stroke-width="1.6"/>
 <text x="1268.0" y="440" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="15.5" font-weight="700" fill="#16202c">Target policy</text>
-<text x="1268.0" y="460" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="12.6" font-weight="400" fill="#3a4552">ûⱼ, ϑ̂ⱼ   (eq. 3.66–3.67, current weights)</text>
+<text x="1268.0" y="460" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="12.6" font-weight="400" fill="#3a4552">ûⱼ, ϑ̂ⱼ   (actor-NN parameterisation, current weights)</text>
 <rect x="868" y="534" width="470" height="82" rx="11" ry="11" fill="#fcf1e2" stroke="#c07a1e" stroke-width="1.6"/>
 <text x="1103.0" y="558" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="15.2" font-weight="700" fill="#16202c">Off-policy Bellman equation</text>
 <text x="1103.0" y="578" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="12.6" font-weight="400" fill="#3a4552">Λᵢ(t)ᵀ 𝒵ᵢ + ϱᵢ(t) = ε_Bᵢ(t)</text>
-<text x="1103.0" y="595.5" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="12.6" font-weight="400" fill="#3a4552">lumps gᵢ, kᵢ, Σᵢ into 𝒵ᵢ — no drift/input/diffusion model needed</text>
+<text x="1103.0" y="595.5" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="12.6" font-weight="400" fill="#3a4552">lumps gᵢ, kᵢ into 𝒵ᵢ — drift fₑᵢ, diffusion Σᵢ cancel exactly</text>
 <path d="M 938 494 C 938 506, 1028 506, 1058 530" fill="none" stroke="#3a4452" stroke-width="2.0" marker-end="url(#arrowhead)"/>
 <path d="M 1268 494 C 1268 506, 1178 506, 1148 530" fill="none" stroke="#3a4452" stroke-width="2.0" marker-end="url(#arrowhead)"/>
 <rect x="913" y="658" width="380" height="70" rx="11" ry="11" fill="#eaf6ec" stroke="#2e8b3f" stroke-width="1.6"/>
 <text x="1103.0" y="682" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="15.2" font-weight="700" fill="#16202c">Model-free residual  Ψᵢᵐᶠ</text>
-<text x="1103.0" y="702" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="12.6" font-weight="400" fill="#3a4552">substitutes  Δφᵢ→Λᵢ,  Ŵᵢ→𝒵ᵢ  in eq. 3.78</text>
+<text x="1103.0" y="702" text-anchor="middle" font-family="Google Sans, Helvetica, Arial, sans-serif" font-size="12.6" font-weight="400" fill="#3a4552">substitutes Δφᵢ→Λᵢ, Ŵᵢ→𝒵ᵢ, Θᵢ→Θᵢᵐᶠ in eq. 3.78</text>
 <line x1="1103" y1="616" x2="1103" y2="654" stroke="#3a4452" stroke-width="2.0" marker-end="url(#arrowhead)"/>
 <path d="M 1293 693 L 1450 693 L 1450 357 C 1450 332, 1420 319, 1400 319" fill="none" stroke="#2e8b3f" stroke-width="2.0" marker-end="url(#arrowhead-green)"/>
 <rect x="1116" y="346.6" width="220.35" height="19.4" rx="4" ry="4" fill="#fbfbfd" opacity="0.9"/>
