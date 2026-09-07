@@ -330,6 +330,25 @@
         Bellman-residual / experience-replay terms lower the cost by a further $\sim$2.4% at equal tracking
         accuracy.
       </p>
+
+      <div class="overview-video-wrap">
+        <div class="video-frame">
+          <video muted loop playsinline controls>
+            <source src="./static/videos/ablation_demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p class="video-caption">
+          Side-by-side on the same simplified visualization plant as the video above: the full critic-only IRL
+          method (left) versus the fixed model-based feedforward alone, with the learned policy $u_i^r$ switched
+          off (right) &mdash; same leader path, same cameras, same zoom. Because this lightweight kinematic demo
+          plant already includes the safety modifications (weight leakage, action/weight caps) needed to keep
+          the <em>full</em> method numerically well-behaved, none of the paper's three ablations reproduces the
+          outright divergence reported for the real backstepping-cascade plant in Sec. Results; what is visible
+          here is the honest, milder version of the same effect &mdash; a looser, laggier formation without the
+          learned policy, versus a tight, fast lock-in with it.
+        </p>
+      </div>
     </section>
 
     <section id="citation" class="section-pad content-grid site-section">
