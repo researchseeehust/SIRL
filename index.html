@@ -1,441 +1,353 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
     content="Stochastic Integral Reinforcement Learning for Distributed H-infinity Optimal Formation Tracking of Multi-Agent Wheeled Mobile Robots">
   <meta name="keywords"
     content="Stochastic Integral Reinforcement Learning, Multi-Agent Systems, Wheeled Mobile Robots, H-infinity Control, Formation Tracking">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SIRL | Stochastic Integral Reinforcement Learning for Distributed H∞ Formation Tracking</title>
+  <title>SIRL | Distributed H&infin; Formation Tracking</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/sirl.css">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
   <script>
-    MathJax = {
-      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
-    };
+    MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
   </script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
+  <header class="site-header" aria-label="Primary navigation">
+    <nav class="nav-shell">
+      <a class="brand" href="#top">
+        <img src="./images/logobk.svg" alt="HUST">
+        <span class="brand-sirl">SIRL</span>
       </a>
-    </div>
-    <div class="navbar-menu">
-      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-        <a class="navbar-item" href="#">
-          <span class="icon">
-            <i class="fas fa-home"></i>
-          </span>
-        </a>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      <div class="nav-links" data-nav-links>
+        <a href="#overview">Overview</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#learning">Critic Learning</a>
+        <a href="#citation">Citation</a>
       </div>
-    </div>
-  </nav>
+    </nav>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+  </header>
 
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-2 publication-title">
-              Stochastic Integral Reinforcement Learning for Distributed
-              $H_\infty$ Optimal Formation Tracking of Multi-Agent Wheeled Mobile Robots
-            </h1>
+  <main id="main">
+    <section id="top" class="hero site-section">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-shell">
+        <h1>
+          Stochastic Integral Reinforcement Learning for Distributed
+          $H_\infty$ Optimal Formation Tracking of Multi-Agent Wheeled Mobile Robots
+        </h1>
 
-            <div class="is-size-5 publication-authors">
-              <span class="author-block">
-                <a href="#">Khanh Thai</a><sup>1*</sup>,
-              </span>
-              <span class="author-block">
-                <a href="https://huy-quang-dao.github.io/">Huy Dao</a><sup>1*</sup>,
-              </span>
-              <span class="author-block">
-                <a href="https://scholar.google.com/citations?user=rkO7JP4AAAAJ&hl=en">Nga Thi-Thuy Vu</a><sup>1</sup>
-              </span>
-            </div>
+        <p class="authors">
+          <a href="#">Khanh Thai</a><sup>1*</sup>,
+          <a href="https://huy-quang-dao.github.io/">Huy Dao</a><sup>1*</sup>,
+          <a href="https://scholar.google.com/citations?user=rkO7JP4AAAAJ&hl=en">Nga Thi-Thuy Vu</a><sup>1</sup>
+        </p>
+        <p class="affiliations"><sup>1</sup>Hanoi University of Science and Technology (HUST), Vietnam</p>
+        <p class="footnote"><sup>*</sup>Equal contribution</p>
 
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>1</sup>Hanoi University of Science and Technology (HUST), Vietnam</span>
-            </div>
-            <p class="is-size-6" style="margin-top: 0.5rem; color: #555;">
-              <sup>*</sup>Equal contribution
-            </p>
+        <div class="hero-logo">
+          <img src="./images/logobk.svg" alt="Hanoi University of Science and Technology">
+        </div>
 
-            <div class="image-container" style="margin-top: 1.25rem; margin-bottom: 0.5rem;">
-              <img src="./images/logobk.svg" alt="Hanoi University of Science and Technology"
-                style="display: inline-block; height: 90px; width: auto;">
-            </div>
+        <div class="hero-actions">
+          <a href="./example.pdf" class="btn primary">
+            <span class="icon"><i class="fas fa-file-pdf"></i></span> Paper
+          </a>
+          <a href="#" class="btn">
+            <span class="icon"><i class="ai ai-arxiv"></i></span> arXiv
+          </a>
+        </div>
 
-            <div class="columns is-centered has-text-centered">
-              <div class="publication-links">
-                <span class="link-block">
-                  <a href="./example.pdf" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                    </span>
-                    <span>Paper</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a href="#" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                    </span>
-                    <span>arXiv</span>
-                  </a>
-                </span>
-                <!-- <span class="link-block">
-                  <a href="https://github.com/researchseeehust/SIRL" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span> -->
-              </div>
-            </div>
+        <div class="metric-chips" aria-label="Key facts">
+          <span>Stochastic $H_\infty$ zero-sum game</span>
+          <span>Critic-only online IRL</span>
+          <span>Model-free control</span>
+          <span>Mean-square UUB guarantee</span>
+        </div>
 
-          </div>
+        <div class="hero-visual">
+          <figure class="card">
+            <img src="./images/quy_dao.jpg" alt="Multi-agent wheeled mobile robot formation trajectories">
+            <figcaption>
+              Distributed $H_\infty$ optimal formation tracking for multi-agent wheeled mobile robots under
+              It&ocirc; process noise and worst-case disturbances.
+            </figcaption>
+          </figure>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="hero teaser">
-    <div class="container is-max-desktop">
-      <div class="hero-body">
-        <img src="./images/quy_dao.jpg" alt="Multi-agent wheeled mobile robot formation trajectories"
-          style="width: 100%; border-radius: 10px;">
-        <h2 class="subtitle has-text-centered" style="margin-top: 1rem;">
-          Distributed $H_\infty$ optimal formation tracking for multi-agent wheeled mobile robots under
-          Itô process noise and worst-case disturbances.
-        </h2>
+    <section id="overview" class="section-pad content-grid site-section">
+      <div class="section-heading">
+        <p class="eyebrow">Overview</p>
+        <h2>A genuinely stochastic $H_\infty$ formation-tracking game, solved online.</h2>
+        <p class="section-lede">
+          In this paper a distributed stochastic $H_\infty$ optimal tracking control problem for multi-agent
+          wheeled mobile robot systems is proposed, under both It&ocirc; process noise in the agent dynamics and
+          worst-case external disturbances. By reformulating the control task as a stochastic zero-sum game
+          problem, a decentralized framework is established wherein each agent interacts locally with its
+          neighbors and is influenced by disturbances. The solution involves a set of coupled stochastic
+          Hamilton&ndash;Jacobi&ndash;Isaacs equations, which gain a genuine It&ocirc;-correction term over their
+          deterministic counterpart and reduce to them exactly as the noise intensity vanishes. To derive an
+          approximate optimal policy, a critic-only neural network scheme is developed. A historical data-based
+          update law is employed to eliminate the need for persistence of excitation, thereby enhancing online
+          learning efficiency. Furthermore, the proposed approach does not require knowledge of the drift dynamics
+          of the augmented system. Simulation results are presented to demonstrate the effectiveness and real-time
+          capability of the proposed method.
+        </p>
       </div>
-    </div>
-  </section>
 
-  <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Simulation Video</h2>
-      <div class="content has-text-centered">
-        <p>
+      <div class="overview-cards">
+        <article class="card">
+          <span class="card-icon" style="background: linear-gradient(135deg,#2f6fb0,#4fb3d9);"><i class="fas fa-dice"></i></span>
+          <h3>Genuinely Stochastic $H_\infty$ Game</h3>
+          <p>Each agent's dynamics are modeled as an It&ocirc; SDE, not an ODE. The coupled HJI equations gain a
+            genuine It&ocirc;-correction term absent from deterministic formulations, reducing to them exactly as
+            the diffusion intensity vanishes.</p>
+        </article>
+        <article class="card">
+          <span class="card-icon" style="background: linear-gradient(135deg,#7b4fb0,#b083e0);"><i class="fas fa-brain"></i></span>
+          <h3>Critic-Only Online IRL</h3>
+          <p>A single critic network per agent, tuned by a historical-data (experience-replay) adaptive law
+            re-derived via It&ocirc;'s formula, relaxes the persistence-of-excitation requirement while preserving
+            stability during learning.</p>
+        </article>
+        <article class="card">
+          <span class="card-icon" style="background: linear-gradient(135deg,#c07a1e,#e0aa5c);"><i class="fas fa-unlink"></i></span>
+          <h3>Completely Model-Free</h3>
+          <p>An off-policy reformulation lumps the unknown input/diffusion channels into the agents' own policies.
+            No drift, input-channel, or diffusion knowledge is required &mdash; the extension is a change of
+            regressor, not of algorithm.</p>
+        </article>
+        <article class="card">
+          <span class="card-icon" style="background: linear-gradient(135deg,#1e8a72,#4fc2a3);"><i class="fas fa-shield-alt"></i></span>
+          <h3>Mean-Square UUB Guarantee</h3>
+          <p>Tracking and critic-weight errors are proven ultimately uniformly bounded in the mean-square sense,
+            with an explicit noise-dependent bound that recovers the deterministic pathwise result as
+            $\Sigma_i \to 0$.</p>
+        </article>
+      </div>
+
+      <div class="overview-video-wrap">
+        <div class="video-frame">
+          <video autoplay muted loop playsinline controls>
+            <source src="./static/videos/formation_demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p class="video-caption">
           A MuJoCo visualization of the paper's exact experiment (Sec. Results): the virtual leader (gold beacon)
           traces the serpentine reference while three follower WMRs, running the online IRL / $H_\infty$
           critic-actor law with the paper's communication graph, self-assemble into the learned rigid formation.
-          The coloured curves are the resulting 2D trajectories (cf. Fig. 4.9 / <code>quy_dao.jpg</code>); the
-          white links show the live communication-graph edges converging to a fixed shape.
+          The coloured curves are the resulting 2D trajectories; the white links show the live
+          communication-graph edges converging to a fixed shape.
         </p>
       </div>
-      <video autoplay muted loop playsinline controls
-        style="width: 100%; max-width: 960px; display: block; margin: 1rem auto 0; border-radius: 10px;">
-        <source src="./static/videos/formation_demo.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  </section>
+    </section>
 
-  <section class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Abstract</h2>
-          <div class="content has-text-justified">
-            <p>
-              In this paper a distributed stochastic $H_\infty$ optimal tracking control problem for multi-agent
-              wheeled mobile robot systems is proposed, under both Itô process noise in the agent dynamics and
-              worst-case external disturbances. By reformulating the control task as a stochastic zero-sum game
-              problem, a decentralized framework is established wherein each agent interacts locally with its
-              neighbors and is influenced by disturbances. The solution involves a set of coupled stochastic
-              Hamilton–Jacobi–Isaacs equations, which gain a genuine Itô-correction term over their deterministic
-              counterpart and reduce to them exactly as the noise intensity vanishes. To derive an approximate
-              optimal policy, a critic-only neural network scheme is developed. A historical data-based update law
-              is employed to eliminate the need for persistence of excitation, thereby enhancing online learning
-              efficiency. Furthermore, the proposed approach does not require knowledge of the drift dynamics of the
-              augmented system. Simulation results are presented to demonstrate the effectiveness and real-time
-              capability of the proposed method.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Key Contributions</h2>
-      <div class="columns is-multiline">
-        <div class="column is-3">
-          <div class="box has-text-centered" style="height: 100%;">
-            <span class="icon is-large" style="color: #2f6fb0;"><i class="fas fa-dice fa-2x"></i></span>
-            <p class="title is-6" style="margin-top: 0.75rem;">Genuinely Stochastic $H_\infty$ Game</p>
-            <p class="is-size-7 has-text-justified">
-              Each agent's dynamics are modeled as an It&ocirc; SDE, not an ODE. The coupled HJI equations gain a
-              genuine It&ocirc;-correction term absent from deterministic formulations, and reduce to them exactly
-              as the diffusion intensity vanishes.
-            </p>
-          </div>
-        </div>
-        <div class="column is-3">
-          <div class="box has-text-centered" style="height: 100%;">
-            <span class="icon is-large" style="color: #7b4fb0;"><i class="fas fa-brain fa-2x"></i></span>
-            <p class="title is-6" style="margin-top: 0.75rem;">Critic-Only Online IRL</p>
-            <p class="is-size-7 has-text-justified">
-              A single critic network per agent, tuned by a historical-data (experience-replay) adaptive law
-              re-derived via It&ocirc;'s formula, relaxes the persistence-of-excitation requirement while
-              preserving stability during learning.
-            </p>
-          </div>
-        </div>
-        <div class="column is-3">
-          <div class="box has-text-centered" style="height: 100%;">
-            <span class="icon is-large" style="color: #c07a1e;"><i class="fas fa-unlink fa-2x"></i></span>
-            <p class="title is-6" style="margin-top: 0.75rem;">Completely Model-Free</p>
-            <p class="is-size-7 has-text-justified">
-              An off-policy reformulation lumps the unknown input/diffusion channels into the agents' own
-              policies. No drift, input-channel, or diffusion knowledge is required &mdash; the extension is a
-              change of regressor, not of algorithm.
-            </p>
-          </div>
-        </div>
-        <div class="column is-3">
-          <div class="box has-text-centered" style="height: 100%;">
-            <span class="icon is-large" style="color: #1e8a72;"><i class="fas fa-shield-alt fa-2x"></i></span>
-            <p class="title is-6" style="margin-top: 0.75rem;">Mean-Square UUB Guarantee</p>
-            <p class="is-size-7 has-text-justified">
-              Tracking and critic-weight errors are proven ultimately uniformly bounded in the mean-square sense,
-              with an explicit noise-dependent bound that recovers the deterministic pathwise result as
-              $\Sigma_i \to 0$.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="background-color: #f5f5f5;">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-full-width">
-          <h2 class="title is-3">Method Overview</h2>
-          <div class="content has-text-justified">
-            <p>
-              We cast distributed formation tracking as a stochastic zero-sum game and solve the resulting coupled
-              stochastic HJI equations online with a critic-only integral reinforcement learning (IRL) scheme.
-              Historical data replace persistence-of-excitation requirements, and the controller does not need the
-              drift dynamics of the augmented multi-agent system.
-            </p>
-          </div>
-          <div style="margin-top: 1.5rem;">
-            <img src="./images/algorithm_diagram.svg" alt="Block diagram of the online IRL / H-infinity critic-actor algorithm"
-              style="width: 100%; max-width: 1000px; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; padding: 0.5rem;">
-            <p class="has-text-centered is-size-6" style="margin-top: 0.5rem;">
-              Per-agent algorithm loop: the neighbourhood error feeds a critic network whose IRL Bellman residual and
-              replayed history drive the weight-adaptive law (eq. 3.78); the resulting critic weights parameterise
-              the $H_\infty$ policy and worst-case disturbance, which act on the WMR and close the loop through the
-              measured state and the communication graph.
-            </p>
-          </div>
-
-          <div class="box has-text-left" style="margin-top: 1.75rem; border-left: 5px solid #1e8a72;">
-            <p class="title is-5" style="margin-bottom: 0.5rem;">
-              <span class="icon" style="color: #1e8a72;"><i class="fas fa-shield-alt"></i></span>
-              Theorem (Mean-Square UUB, Theorem 3.4)
-            </p>
-            <p class="content has-text-justified" style="margin-bottom: 0;">
-              Under the proposed adaptive law (eq. 3.78) and the history-stack rank condition, the closed-loop
-              tracking error $\delta_i$ and the critic weight error $\tilde W_i$ are ultimately uniformly bounded
-              <em>in the mean-square sense</em>, with an ultimate bound that reduces exactly to the deterministic
-              pathwise UUB result as the diffusion intensity $\Sigma_i \to 0$. The approximated value function,
-              control policy, and worst-case disturbance all converge to their optimal Nash-equilibrium
-              counterparts in mean square: $\mathbb{E}\|V_i^* - \hat V_i\|^2 < \epsilon_{V_i}$,
-              $\mathbb{E}\|u_i^* - \hat u_i\|^2 < \epsilon_{u_i}$, $\mathbb{E}\|\vartheta_i^* - \hat\vartheta_i\|^2 <
-              \epsilon_{\vartheta_i}$.
-            </p>
-          </div>
-
-          <div class="columns is-centered is-vcentered" style="margin-top: 1.5rem;">
-            <div class="column is-5">
-              <img src="./images/graph.jpg" alt="Communication graph" style="width: 100%; border-radius: 8px;">
-              <p class="has-text-centered is-size-6" style="margin-top: 0.5rem;">Communication topology</p>
-            </div>
-            <div class="column is-7">
-              <img src="./images/disturbance_rejection.jpg" alt="Disturbance rejection"
-                style="width: 100%; border-radius: 8px;">
-              <p class="has-text-centered is-size-6" style="margin-top: 0.5rem;">Disturbance rejection performance</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Formation Tracking Results</h2>
-      <div class="content has-text-justified">
-        <p>
-          The proposed SIRL controller achieves accurate formation tracking for wheeled mobile robots under process
-          noise and adversarial disturbances. Position and orientation errors converge, while critic network weights
-          remain bounded during online learning.
+    <section id="method" class="section-pad content-grid site-section">
+      <div class="section-heading">
+        <p class="eyebrow">Method</p>
+        <h2>Coupled stochastic HJI equations, solved with critic-only IRL.</h2>
+        <p class="section-lede">
+          We cast distributed formation tracking as a stochastic zero-sum game and solve the resulting coupled
+          stochastic HJI equations online with a critic-only integral reinforcement learning (IRL) scheme.
+          Historical data replace persistence-of-excitation requirements, and the controller does not need the
+          drift dynamics of the augmented multi-agent system.
         </p>
       </div>
 
-      <div class="columns is-multiline is-centered" style="margin-top: 1rem;">
-        <div class="column is-4">
-          <img src="./images/ex.jpg" alt="Position error ex" style="width: 100%; border-radius: 8px;">
-          <p class="has-text-centered is-size-6">$e_x$ tracking error</p>
-        </div>
-        <div class="column is-4">
-          <img src="./images/ey.jpg" alt="Position error ey" style="width: 100%; border-radius: 8px;">
-          <p class="has-text-centered is-size-6">$e_y$ tracking error</p>
-        </div>
-        <div class="column is-4">
-          <img src="./images/etheta.jpg" alt="Orientation error" style="width: 100%; border-radius: 8px;">
-          <p class="has-text-centered is-size-6">$e_\theta$ tracking error</p>
-        </div>
-        <div class="column is-6">
-          <img src="./images/enorm.jpg" alt="Error norm" style="width: 100%; border-radius: 8px;">
-          <p class="has-text-centered is-size-6">Position-error norm</p>
-        </div>
-        <div class="column is-6">
-          <img src="./images/noise_sensitivity.jpg" alt="Noise sensitivity" style="width: 100%; border-radius: 8px;">
-          <p class="has-text-centered is-size-6">Noise sensitivity analysis</p>
-        </div>
-      </div>
-    </div>
-  </section>
+      <figure class="pipeline-figure card">
+        <img src="./images/algorithm_diagram.svg"
+          alt="Block diagram of the online IRL / H-infinity critic-actor algorithm">
+        <figcaption>
+          Per-agent algorithm loop: the neighbourhood error feeds a critic network whose IRL Bellman residual and
+          replayed history drive the weight-adaptive law (eq. 3.78); the resulting critic weights parameterise
+          the $H_\infty$ policy and worst-case disturbance, which act on the WMR and close the loop through the
+          measured state and the communication graph.
+        </figcaption>
+      </figure>
 
-  <section class="section" style="background-color: #f5f5f5;">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Online Critic Learning</h2>
-      <div class="content has-text-justified">
+      <div class="card theorem-card">
+        <p class="theorem-title"><i class="fas fa-shield-alt"></i> Theorem (Mean-Square UUB, Theorem 3.4)</p>
         <p>
+          Under the proposed adaptive law (eq. 3.78) and the history-stack rank condition, the closed-loop
+          tracking error $\delta_i$ and the critic weight error $\tilde W_i$ are ultimately uniformly bounded
+          <em>in the mean-square sense</em>, with an ultimate bound that reduces exactly to the deterministic
+          pathwise UUB result as the diffusion intensity $\Sigma_i \to 0$. The approximated value function,
+          control policy, and worst-case disturbance all converge to their optimal Nash-equilibrium counterparts
+          in mean square: $\mathbb{E}\|V_i^* - \hat V_i\|^2 < \epsilon_{V_i}$,
+          $\mathbb{E}\|u_i^* - \hat u_i\|^2 < \epsilon_{u_i}$, $\mathbb{E}\|\vartheta_i^* - \hat\vartheta_i\|^2 <
+          \epsilon_{\vartheta_i}$.
+        </p>
+      </div>
+
+      <div class="two-col-figures">
+        <figure>
+          <img src="./images/graph.jpg" alt="Communication graph">
+          <figcaption>Communication topology</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/disturbance_rejection.jpg" alt="Disturbance rejection">
+          <figcaption>Disturbance rejection performance</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="results" class="section-pad content-grid site-section">
+      <div class="section-heading">
+        <p class="eyebrow">Results</p>
+        <h2>Accurate formation tracking under noise and adversarial disturbances.</h2>
+        <p class="section-lede">
+          The proposed SIRL controller achieves accurate formation tracking for wheeled mobile robots under
+          process noise and adversarial disturbances. Position and orientation errors converge, while critic
+          network weights remain bounded during online learning.
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+        <figure>
+          <img src="./images/ex.jpg" alt="Position error ex">
+          <figcaption>$e_x$ tracking error</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/ey.jpg" alt="Position error ey">
+          <figcaption>$e_y$ tracking error</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/etheta.jpg" alt="Orientation error">
+          <figcaption>$e_\theta$ tracking error</figcaption>
+        </figure>
+        <figure class="span-2">
+          <img src="./images/enorm.jpg" alt="Error norm">
+          <figcaption>Position-error norm</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/noise_sensitivity.jpg" alt="Noise sensitivity">
+          <figcaption>Noise sensitivity analysis</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="learning" class="section-pad content-grid site-section">
+      <div class="section-heading">
+        <p class="eyebrow">Online Critic Learning</p>
+        <h2>Critic weights converge online &mdash; no persistence of excitation required.</h2>
+        <p class="section-lede">
           Critic neural-network weights converge online using historical data, without requiring persistence of
           excitation. Ablation studies quantify the contribution of the reinforcement learning component.
         </p>
       </div>
-      <div class="columns is-multiline is-centered" style="margin-top: 1rem;">
-        <div class="column is-4">
-          <img src="./images/W1.jpg" alt="Critic weights W1" style="width: 100%; border-radius: 8px;">
-          <p class="has-text-centered is-size-6">Critic weights $W_1$</p>
-        </div>
-        <div class="column is-4">
-          <img src="./images/W2.jpg" alt="Critic weights W2" style="width: 100%; border-radius: 8px;">
-          <p class="has-text-centered is-size-6">Critic weights $W_2$</p>
-        </div>
-        <div class="column is-4">
-          <img src="./images/W3.jpg" alt="Critic weights W3" style="width: 100%; border-radius: 8px;">
-          <p class="has-text-centered is-size-6">Critic weights $W_3$</p>
-        </div>
-        <div class="column is-8">
-          <img src="./images/ablation.jpg" alt="Ablation study" style="width: 100%; border-radius: 8px;">
-          <p class="has-text-centered is-size-6">Ablation: contribution of the RL component</p>
-        </div>
+
+      <div class="gallery-grid">
+        <figure>
+          <img src="./images/W1.jpg" alt="Critic weights W1">
+          <figcaption>Critic weights $W_1$</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/W2.jpg" alt="Critic weights W2">
+          <figcaption>Critic weights $W_2$</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/W3.jpg" alt="Critic weights W3">
+          <figcaption>Critic weights $W_3$</figcaption>
+        </figure>
+        <figure class="span-3">
+          <img src="./images/ablation.jpg" alt="Ablation study">
+          <figcaption>Ablation: contribution of the RL component</figcaption>
+        </figure>
       </div>
 
-      <div class="content" style="margin-top: 2rem;">
-        <p class="has-text-centered is-size-6">
+      <div class="card table-card">
+        <p style="text-align:center; color: var(--muted); margin: 0 0 1rem;">
           Disabling each component in turn, with topology, reference, noise realisation, and seed held fixed
           (mean position-error norm $\bar{\|\delta\|}$ over $t>25\,$s; cost
           $J=\sum_i\int_5^{50}(e_i^TQ_ie_i+u_i^{rT}R_{ii}u_i^r)\,dt$):
         </p>
-        <div class="table-container" style="max-width: 720px; margin: 1rem auto 0;">
-          <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-            <thead>
-              <tr>
-                <th>Variant</th>
-                <th class="has-text-centered">Cost $J$</th>
-                <th class="has-text-centered">$\bar{\|\delta\|}$ (m)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Proposed (full)</strong></td>
-                <td class="has-text-centered"><strong>4.38</strong></td>
-                <td class="has-text-centered"><strong>0.026</strong></td>
-              </tr>
-              <tr>
-                <td>Without Bellman-residual / replay terms</td>
-                <td class="has-text-centered">4.49</td>
-                <td class="has-text-centered">0.025</td>
-              </tr>
-              <tr>
-                <td>Without stabilizing term $\xi_i\Theta_i$</td>
-                <td class="has-text-centered" style="color:#c0392b;">diverges</td>
-                <td class="has-text-centered">&mdash;</td>
-              </tr>
-              <tr>
-                <td>Critic weights frozen at $\hat W_i(0)$</td>
-                <td class="has-text-centered" style="color:#c0392b;">diverges</td>
-                <td class="has-text-centered">&mdash;</td>
-              </tr>
-              <tr>
-                <td>Without learned policy $u_i^r$</td>
-                <td class="has-text-centered" style="color:#c0392b;">$1.5\times10^{8}$</td>
-                <td class="has-text-centered" style="color:#c0392b;">14.11</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="is-size-7 has-text-centered" style="color: #666; margin-top: 0.5rem;">
-          The model-based feedforward alone cannot stabilise the formation (error grows past 14&nbsp;m without the
-          learned policy); the stabilizing term is what keeps the closed loop out of the divergent region; and the
-          Bellman-residual / experience-replay terms lower the cost by a further $\sim$2.4% at equal tracking
-          accuracy.
-        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Variant</th>
+              <th>Cost $J$</th>
+              <th>$\bar{\|\delta\|}$ (m)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight-row">
+              <td>Proposed (full)</td>
+              <td>4.38</td>
+              <td>0.026</td>
+            </tr>
+            <tr>
+              <td>Without Bellman-residual / replay terms</td>
+              <td>4.49</td>
+              <td>0.025</td>
+            </tr>
+            <tr>
+              <td>Without stabilizing term $\xi_i\Theta_i$</td>
+              <td class="diverge">diverges</td>
+              <td>&mdash;</td>
+            </tr>
+            <tr>
+              <td>Critic weights frozen at $\hat W_i(0)$</td>
+              <td class="diverge">diverges</td>
+              <td>&mdash;</td>
+            </tr>
+            <tr>
+              <td>Without learned policy $u_i^r$</td>
+              <td class="diverge">$1.5\times10^{8}$</td>
+              <td class="diverge">14.11</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
-  </section>
+      <p class="table-note">
+        The model-based feedforward alone cannot stabilise the formation (error grows past 14&nbsp;m without the
+        learned policy); the stabilizing term is what keeps the closed loop out of the divergent region; and the
+        Bellman-residual / experience-replay terms lower the cost by a further $\sim$2.4% at equal tracking
+        accuracy.
+      </p>
+    </section>
 
-  <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">BibTeX</h2>
-      <div class="content">
-        <pre style="background-color: #f5f5f5; padding: 1.25rem; border-radius: 8px; overflow-x: auto; text-align: left;"><code>@misc{thai2026sirl,
+    <section id="citation" class="section-pad content-grid site-section">
+      <div class="section-heading">
+        <p class="eyebrow">Citation</p>
+        <h2>Cite SIRL</h2>
+      </div>
+      <article class="card citation-card">
+        <pre><code>@misc{thai2026sirl,
   title={Stochastic Integral Reinforcement Learning for Distributed $H_\infty$ Optimal Formation Tracking of Multi-Agent Wheeled Mobile Robots},
   author={Thai, Khanh and Dao, Huy and Vu, Nga Thi-Thuy},
   year={2026}
 }</code></pre>
-      </div>
-    </div>
-  </section>
+      </article>
+    </section>
+  </main>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-8">
-          <div class="content has-text-centered">
-            <p>
-              This website template is adapted from
-              <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
-            </p>
-          </div>
-        </div>
-      </div>
+  <footer class="site-footer">
+    <div class="content-grid">
+      <p>
+        This website's design is adapted from the HiPHI project page, itself built on the
+        <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> template.
+      </p>
     </div>
   </footer>
 
+  <script src="./static/js/sirl.js" defer></script>
 </body>
 
 </html>
