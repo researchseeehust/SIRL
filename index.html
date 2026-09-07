@@ -173,12 +173,19 @@
 
       <figure class="pipeline-figure card">
         <img src="./images/algorithm_diagram.svg"
-          alt="Block diagram of the online IRL / H-infinity critic-actor algorithm">
+          alt="SIRL overview: (a) the per-agent online IRL / H-infinity critic-actor control loop, (b) the critic regressor and history-stack construction, and (c) the model-free off-policy extension">
         <figcaption>
-          Per-agent algorithm loop: the neighbourhood error feeds a critic network whose IRL Bellman residual and
-          replayed history drive the weight-adaptive law (eq. 3.78); the resulting critic weights parameterise
-          the $H_\infty$ policy and worst-case disturbance, which act on the WMR and close the loop through the
-          measured state and the communication graph.
+          <strong>SIRL overview.</strong>
+          (a) Per-agent control loop: the neighbourhood error feeds a critic network whose IRL Bellman residual
+          and replayed history drive the weight-adaptive law (eq. 3.78); the resulting critic weights
+          parameterise the $H_\infty$ policy and worst-case disturbance, which act on the WMR and close the loop
+          through the measured state and the communication graph.
+          (b) The critic's quadratic bases $\varphi_i(\delta_i)$ and their finite differences $\Delta\varphi_i(t)$
+          are recorded into a rank-$L$ history stack $Z_i$, which replaces the persistence-of-excitation
+          requirement with a verifiable, data-driven condition.
+          (c) The model-free extension separates behaviour signals $u_j=\hat u_j+e_j$ from the target policy,
+          lumping the unknown drift/input/diffusion terms into $\mathcal{Z}_i$ so the resulting residual
+          $\Psi_i^{\mathrm{mf}}$ is a drop-in replacement inside the same adaptive law (eq. 3.78).
         </figcaption>
       </figure>
 

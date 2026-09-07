@@ -104,7 +104,7 @@ h3 { font-size: 1.2rem; }
 
 /* Method */
 .pipeline-figure { padding: 1rem; overflow: hidden; margin: 2rem 0 0; }
-.pipeline-figure img { width: 100%; max-width: 1000px; margin: 0 auto; background: white; border-radius: 16px; }
+.pipeline-figure img { width: 100%; max-width: 1180px; margin: 0 auto; background: white; border-radius: 16px; }
 .pipeline-figure figcaption { color: var(--muted); font-size: .92rem; padding: 1rem .5rem 0; text-align: justify; }
 
 .theorem-card { margin-top: 1.75rem; border-left: 5px solid var(--teal); text-align: left; }
