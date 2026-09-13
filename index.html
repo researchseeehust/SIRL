@@ -186,20 +186,26 @@
       </div>
 
       <figure class="pipeline-figure card">
-        <img src="./images/algorithm_diagram.svg"
-          alt="SIRL overview: (a) the per-agent online IRL / H-infinity critic-actor control loop, (b) the critic regressor and history-stack construction, and (c) the model-free off-policy extension">
+        <a href="./images/algorithm_diagram.svg" target="_blank" rel="noopener"
+           title="Open the diagram at full size">
+          <img src="./images/algorithm_diagram.svg"
+            alt="SIRL overview in three panels: (a) the per-agent online critic-only IRL / H-infinity control loop, (b) the critic regressor and history-stack construction, and (c) the model-free off-policy extension">
+        </a>
         <figcaption>
           <strong>SIRL overview.</strong>
-          (a) Per-agent control loop: the neighbourhood error feeds a critic network whose IRL Bellman residual
-          and replayed history drive the weight-adaptive law (eq. 35); the resulting critic weights
-          parameterise the $H_\infty$ policy and worst-case disturbance, which act on the WMR and close the loop
-          through the measured state and the communication graph.
-          (b) The critic's quadratic bases $\varphi_i(\delta_i)$ and their finite differences $\Delta\varphi_i(t)$
-          are recorded into a rank-$L$ history stack $Z_i$, which replaces the persistence-of-excitation
-          requirement with a verifiable, data-driven condition.
-          (c) The model-free extension separates behaviour signals $u_j=\hat u_j+e_j$ from the target policy,
-          lumping the unknown drift/input/diffusion terms into $\mathcal{Z}_i$ so the resulting residual
-          $\Psi_i^{\mathrm{mf}}$ is a drop-in replacement inside the same adaptive law (eq. 35).
+          (a) Per-agent control loop: the neighbourhood error drives a critic network whose IRL Bellman residual,
+          together with the replayed history stack, feeds the weight-adaptive law (eq. 35); the critic weights
+          parameterise the $H_\infty$ policy and the worst-case disturbance, which act on the robot and close the
+          loop through the measured state and the communication graph. Neighbour data enter only through
+          $\varrho_i$ and the stabilizing term $\Theta_i$.
+          (b) Expands the critic path: the quadratic bases $\phi_i(\delta_i)$ and their windowed differences
+          $\Delta\phi_i(t)$ are recorded into a history stack $Z_i$ of fixed size, whose rank condition
+          &mdash; checkable on the recorded data &mdash; replaces persistence of excitation.
+          (c) The model-free extension separates the behaviour signal $u_j=\hat u_j+e_j$ from the target policy
+          and lumps the unknown input channels $g_i,k_i$ into the enlarged parameter $\mathcal{Z}_i$; the drift
+          $f_{ei}$ and the diffusion $\Sigma_i$ do not have to be identified at all &mdash; they cancel against
+          the Bellman identity. The resulting residual $\Psi_i^{\mathrm{mf}}$ drops into the same adaptive law.
+          <em>Click the figure to open it full size.</em>
         </figcaption>
       </figure>
 
