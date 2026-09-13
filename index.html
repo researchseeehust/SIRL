@@ -63,6 +63,8 @@
           <img src="./images/logobk.svg" alt="Hanoi University of Science and Technology">
         </div>
 
+        <!-- Paper / arXiv links hidden while the manuscript is under revision.
+             To restore, delete this comment wrapper (and point href at the new PDF).
         <div class="hero-actions">
           <a href="./example.pdf" class="btn primary">
             <span class="icon"><i class="fas fa-file-pdf"></i></span> Paper
@@ -71,11 +73,12 @@
             <span class="icon"><i class="ai ai-arxiv"></i></span> arXiv
           </a>
         </div>
+        -->
 
         <div class="metric-chips" aria-label="Key facts">
           <span>Stochastic $H_\infty$ zero-sum game</span>
           <span>Critic-only online IRL</span>
-          <span>Model-free control</span>
+          <span>Model-free learning</span>
           <span>Mean-square UUB guarantee</span>
         </div>
 
@@ -105,11 +108,16 @@
           neighbors and is influenced by disturbances. The solution involves a set of coupled stochastic
           Hamilton&ndash;Jacobi&ndash;Isaacs equations, which gain a genuine It&ocirc;-correction term over their
           deterministic counterpart and reduce to them exactly as the noise intensity vanishes. To derive an
-          approximate optimal policy, a critic-only neural network scheme is developed. A historical data-based
-          update law is employed to eliminate the need for persistence of excitation, thereby enhancing online
-          learning efficiency. Furthermore, the proposed approach does not require knowledge of the drift dynamics
-          of the augmented system. Simulation results are presented to demonstrate the effectiveness and real-time
-          capability of the proposed method.
+          approximate optimal policy, a critic-only neural network scheme is developed, in which each agent's
+          policy is obtained in closed form from the critic gradient rather than from a separately tuned actor.
+          A historical data-based update law is employed to eliminate the need for persistence of excitation,
+          thereby enhancing online learning efficiency. Furthermore, the learning law requires no knowledge of
+          the drift dynamics of the augmented system; an off-policy reformulation, which augments the critic with
+          actor and cross-channel parameters, additionally removes the dependence on the input and diffusion
+          channels, so that the entire learning problem is solved from data. The auxiliary feedforward term that
+          cancels the nominal consensus coupling remains model-based and is treated as part of the given
+          formation architecture rather than as part of the learned policy. Simulation results are presented to
+          demonstrate the effectiveness and real-time capability of the proposed method.
         </p>
       </div>
 
@@ -124,16 +132,19 @@
         <article class="card">
           <span class="card-icon" style="background: linear-gradient(135deg,#7b4fb0,#b083e0);"><i class="fas fa-brain"></i></span>
           <h3>Critic-Only Online IRL</h3>
-          <p>A single critic network per agent, tuned by a historical-data (experience-replay) adaptive law
-            re-derived via It&ocirc;'s formula, relaxes the persistence-of-excitation requirement while preserving
-            stability during learning.</p>
+          <p>A single critic network per agent &mdash; the policy and the worst-case disturbance follow in closed
+            form from the critic gradient, with no separately tuned actor. A historical-data (experience-replay)
+            adaptive law, re-derived via It&ocirc;'s formula, relaxes the persistence-of-excitation requirement
+            while preserving stability during learning.</p>
         </article>
         <article class="card">
           <span class="card-icon" style="background: linear-gradient(135deg,#c07a1e,#e0aa5c);"><i class="fas fa-unlink"></i></span>
-          <h3>Completely Model-Free</h3>
-          <p>An off-policy reformulation lumps the unknown input/diffusion channels into the agents' own policies.
-            No drift, input-channel, or diffusion knowledge is required &mdash; the extension is a change of
-            regressor, not of algorithm.</p>
+          <h3>Model-Free Learning</h3>
+          <p>An off-policy reformulation lumps the unknown input/diffusion channels into the agents' own policies,
+            augmenting the critic with actor and cross-channel parameters. No drift, input-channel, or diffusion
+            knowledge enters the Bellman equation, the regressor or the adaptive law &mdash; a change of regressor,
+            not of algorithm. The auxiliary feedforward that cancels the nominal consensus coupling stays
+            model-based and belongs to the formation architecture, not to the learned policy.</p>
         </article>
         <article class="card">
           <span class="card-icon" style="background: linear-gradient(135deg,#1e8a72,#4fc2a3);"><i class="fas fa-shield-alt"></i></span>
@@ -179,7 +190,7 @@
         <figcaption>
           <strong>SIRL overview.</strong>
           (a) Per-agent control loop: the neighbourhood error feeds a critic network whose IRL Bellman residual
-          and replayed history drive the weight-adaptive law (eq. 3.78); the resulting critic weights
+          and replayed history drive the weight-adaptive law (eq. 35); the resulting critic weights
           parameterise the $H_\infty$ policy and worst-case disturbance, which act on the WMR and close the loop
           through the measured state and the communication graph.
           (b) The critic's quadratic bases $\varphi_i(\delta_i)$ and their finite differences $\Delta\varphi_i(t)$
@@ -187,14 +198,15 @@
           requirement with a verifiable, data-driven condition.
           (c) The model-free extension separates behaviour signals $u_j=\hat u_j+e_j$ from the target policy,
           lumping the unknown drift/input/diffusion terms into $\mathcal{Z}_i$ so the resulting residual
-          $\Psi_i^{\mathrm{mf}}$ is a drop-in replacement inside the same adaptive law (eq. 3.78).
+          $\Psi_i^{\mathrm{mf}}$ is a drop-in replacement inside the same adaptive law (eq. 35).
         </figcaption>
       </figure>
 
       <div class="card theorem-card">
-        <p class="theorem-title"><i class="fas fa-shield-alt"></i> Theorem (Mean-Square UUB, Theorem 3.4)</p>
+        <p class="theorem-title"><i class="fas fa-shield-alt"></i> Theorem 1 (Mean-Square UUB)</p>
         <p>
-          Under the proposed adaptive law (eq. 3.78) and the history-stack rank condition, the closed-loop
+          Under the proposed adaptive law (eq. 35) and the history-stack rank condition &mdash; and no further
+          hypothesis on the closed loop &mdash; the closed-loop
           tracking error $\delta_i$ and the critic weight error $\tilde W_i$ are ultimately uniformly bounded
           <em>in the mean-square sense</em>, with an ultimate bound that reduces exactly to the deterministic
           pathwise UUB result as the diffusion intensity $\Sigma_i \to 0$. The approximated value function,
