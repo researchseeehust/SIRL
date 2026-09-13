@@ -36,6 +36,7 @@
         <a href="#method">Method</a>
         <a href="#results">Results</a>
         <a href="#learning">Critic Learning</a>
+        <a href="#modelfree">Model-Free</a>
         <a href="#citation">Citation</a>
       </div>
     </nav>
@@ -261,6 +262,36 @@
           <img src="./images/noise_sensitivity.jpg" alt="Noise sensitivity">
           <figcaption>Noise sensitivity analysis</figcaption>
         </figure>
+        <figure>
+          <img src="./images/x.jpg" alt="x trajectories of leader and followers">
+          <figcaption>$x_i\ (i=1,2,3)$ and $x_0$</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/y.jpg" alt="y trajectories of leader and followers">
+          <figcaption>$y_i\ (i=1,2,3)$ and $y_0$</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/theta.jpg" alt="Heading trajectories of leader and followers">
+          <figcaption>$\theta_i\ (i=1,2,3)$ and $\theta_0$</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/V.jpg" alt="Estimated value functions">
+          <figcaption>Estimated value functions $\hat V_i$</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/vi.jpg" alt="Linear velocity control input">
+          <figcaption>Control input $v_i$</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/omegai.jpg" alt="Angular velocity control input">
+          <figcaption>Control input $\omega_i$</figcaption>
+        </figure>
+        <figure class="span-3">
+          <img src="./images/disturbance.jpg" alt="Estimated worst-case disturbance policy">
+          <figcaption>Estimated worst-case disturbance policy $\hat\vartheta_i$, dynamic-channel component.
+            Left: full horizon, dominated by the exploration signal over $[0,5]\,$s. Right: the settled
+            post-excitation behaviour.</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -361,6 +392,61 @@
           learned policy, versus a tight, fast lock-in with it.
         </p>
       </div>
+    </section>
+
+    <section id="modelfree" class="section-pad content-grid site-section">
+      <div class="section-heading">
+        <p class="eyebrow">Model-Free Extension</p>
+        <h2>The same algorithm, run with no model at all.</h2>
+        <p class="section-lede">
+          The off-policy reformulation replaces the critic regressor with an enlarged one carrying actor and
+          cross-channel parameters, leaving the learning mechanism &mdash; residual, history stack, adaptive law
+          &mdash; untouched. Reading the stationarity conditions backwards lumps the unknown products
+          $\nabla V_i^Tg_i$ and $\nabla V_i^Tk_i$ into the agent's own policies, weighted by the design matrices
+          $R_{ii},T_{ii}$; the graphical-game cross terms $\nabla V_i^Tg_j$, which admit no such identity, are
+          identified from data alongside the critic weights.
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+        <figure class="span-3">
+          <img src="./images/modelfree.jpg"
+            alt="Normalised singular-value spectra of the model-free regressor for the three agents, comparing independent exploration, shared exploration, and the model-based regressor">
+          <figcaption>
+            <strong>The rank condition is attainable &mdash; but demands independent excitation.</strong>
+            Normalised singular-value spectra of the model-free regressor $\Lambda_i$ for the three agents
+            ($\dim(\mathcal{Z}_i)=95,255,175$), against the 15-dimensional model-based regressor
+            $\Delta\phi_i$. Solid: independent exploration on every input channel, for which
+            $\mathrm{rank}(\Lambda_i)=\dim(\mathcal{Z}_i)$ exactly. Dashed: probing the disturbance channel
+            with a scaled copy of the control probe &mdash; a natural shortcut &mdash; collapses the spectrum
+            to machine precision in three directions per agent and the rank condition fails, no matter how
+            long the run. Dotted: the model-based regressor on the same data, two orders of magnitude better
+            conditioned &mdash; the price of removing $g_i,k_i$.
+          </figcaption>
+        </figure>
+        <figure class="span-3">
+          <img src="./images/modelfree_closedloop.jpg"
+            alt="Online closed-loop run of the model-free algorithm: formation tracking error, model-free parameter norm, and learned actor output">
+          <figcaption>
+            <strong>Online closed-loop run with $f_{ei},g_i,k_i,\Sigma_i$ all unknown.</strong>
+            Left: formation tracking error; exploration is withdrawn at $25\,$s, after which the error settles
+            to the centimetre scale. Centre: norm of the enlarged parameter $\mathcal{Z}_i$, which grows most
+            for agent 2, the agent coupled to both neighbours; it has not plateaued by $50\,$s &mdash; the
+            expected signature of uniform ultimate boundedness under a finite critic basis rather than
+            convergence. Right: the learned actor output $\hat u_i$ on the first kinematic channel.
+          </figcaption>
+        </figure>
+      </div>
+
+      <p class="table-note">
+        Two checks bound how the construction should be read. The lumping is <em>exact</em>, not an
+        approximation licensed by small residuals: comparing $\Lambda_i^T\mathcal{Z}_i$ against its model-based
+        counterpart window by window gives a maximum difference of $5.6\times10^{-16}$, $2.9\times10^{-15}$ and
+        $7.2\times10^{-16}$ against signal magnitudes of $0.32$, $0.66$ and $0.51$. And the actor bases must be
+        allowed to depend on the measured configuration: for a nonholonomic vehicle the ideal actor carries the
+        heading through $S(\theta_i)$, so a basis in $\delta_i$ alone &mdash; the parameterisation one would
+        write down by default &mdash; leaves relative errors of $24.1\%$, $29.3\%$ and $17.3\%$.
+      </p>
     </section>
 
     <section id="citation" class="section-pad content-grid site-section">
