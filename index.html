@@ -217,10 +217,10 @@
           tracking error $\delta_i$ and the critic weight error $\tilde W_i$ are ultimately uniformly bounded
           <em>in the mean-square sense</em>, with an ultimate bound that reduces exactly to the deterministic
           pathwise UUB result as the diffusion intensity $\Sigma_i \to 0$. The approximated value function,
-          control policy, and worst-case disturbance all converge to their optimal Nash-equilibrium counterparts
+          control policy, and worst-case disturbance approach their optimal Nash-equilibrium counterparts to within a residual set
           in mean square: $\mathbb{E}\|V_i^* - \hat V_i\|^2 < \epsilon_{V_i}$,
           $\mathbb{E}\|u_i^* - \hat u_i\|^2 < \epsilon_{u_i}$, $\mathbb{E}\|\vartheta_i^* - \hat\vartheta_i\|^2 <
-          \epsilon_{\vartheta_i}$.
+          \epsilon_{\vartheta_i}$. These constants shrink as the critic basis is refined, not as the noise vanishes, so the guarantee is ultimate boundedness rather than convergence.
         </p>
       </div>
 
@@ -463,6 +463,15 @@
         </p>
       </div>
 
+      <p class="table-note">
+        The model-free update is also the <em>cheaper</em> of the two to run. Timed on one core of an Intel
+        Core Ultra&nbsp;7 155H against a $10$&nbsp;ms sampling period, the model-based law costs
+        $1.72$&ndash;$1.81$&nbsp;ms per step and the model-free law $0.89$&nbsp;ms &mdash; despite carrying
+        $\dim(\mathcal{Z}_i)=95,255,175$ parameters against $L=15$. Removing the model removes the matrix
+        triples $\nabla\phi_i\,g_iR_{ii}^{-1}g_i^T\,\nabla\phi_i^T$ that the model-based running cost must
+        assemble for the agent and every neighbour at each step; the enlarged regressor is only outer products
+        and one mat-vec against the stored stack, so the extra parameters cost less than what they replace.
+      </p>
       <p class="table-note">
         Two checks bound how the construction should be read. The lumping is <em>exact</em>, not an
         approximation licensed by small residuals: comparing $\Lambda_i^T\mathcal{Z}_i$ against its model-based
