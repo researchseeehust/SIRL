@@ -444,6 +444,25 @@
         </figure>
       </div>
 
+      <div class="overview-video-wrap">
+        <div class="video-frame">
+          <video muted loop playsinline controls preload="metadata">
+            <source src="./static/videos/modelfree_demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p class="video-caption">
+          The model-free run of Algorithm 2, with the drift $f_{ei}$, the input channels $g_i,k_i$ and the
+          diffusion $\Sigma_i$ all unavailable to the learner. The first fifteen seconds look deliberately
+          unruly: bounded exploration is being injected independently on every control and disturbance
+          channel, which is what the enlarged rank condition demands, and the tangled trails are that probing
+          rather than instability. The probes are withdrawn at $25\,$s, after which the formation locks into
+          the rigid shape and the error settles to the centimetre scale &mdash; $0.013$, $0.009$ and
+          $0.006\,$m at $50\,$s. Rendered from the same run that produces Figure 11, so the video and the
+          paper cannot disagree.
+        </p>
+      </div>
+
       <p class="table-note">
         Two checks bound how the construction should be read. The lumping is <em>exact</em>, not an
         approximation licensed by small residuals: comparing $\Lambda_i^T\mathcal{Z}_i$ against its model-based
