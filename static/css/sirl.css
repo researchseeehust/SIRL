@@ -62,7 +62,17 @@ h2 { font-size: clamp(1.9rem, 3vw, 2.7rem); }
 h3 { font-size: 1.2rem; }
 .section-lede, .section-heading p { font-size: clamp(1rem, 1vw, 1.12rem); max-width: 820px; margin: 0 auto .5rem; }
 .section-heading { text-align: center; margin: 0 auto 2rem; max-width: 880px; }
-.content .section-lede, .content p { text-align: justify; }
+/* Running prose is justified; `.content` never existed in the markup, so the
+   rule this replaces matched nothing and the ledes fell back to the centring
+   they inherit from .section-heading. Hyphenation is on so justifying does not
+   open rivers between words. Short captions and the narrow card blurbs stay as
+   they are -- justifying a two-line caption just spaces it oddly. */
+.section-lede, .table-note {
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
 
 /* Hero */
 .hero { position: relative; overflow: hidden; padding-top: clamp(2.5rem, 6vh, 4.5rem); padding-bottom: clamp(2rem, 4vh, 3rem); }
@@ -100,16 +110,16 @@ h3 { font-size: 1.2rem; }
 .overview-video-wrap { margin-top: 2.5rem; }
 .video-frame { overflow: hidden; border-radius: 22px; background: linear-gradient(135deg, rgba(16, 24, 42, .92), rgba(47, 111, 176, .7)); border: 1px solid rgba(255, 255, 255, .5); padding: .7rem; }
 .video-frame video { width: 100%; border-radius: 16px; }
-.video-caption { color: var(--muted); font-size: .95rem; margin-top: 1rem; text-align: justify; }
+.video-caption { color: var(--muted); font-size: .95rem; margin-top: 1rem; text-align: justify; text-align-last: left; hyphens: auto; }
 
 /* Method */
 .pipeline-figure { padding: 1rem; overflow: hidden; margin: 2rem 0 0; }
 .pipeline-figure img { width: 100%; max-width: 1180px; margin: 0 auto; background: white; border-radius: 16px; }
-.pipeline-figure figcaption { color: var(--muted); font-size: .92rem; padding: 1rem .5rem 0; text-align: justify; }
+.pipeline-figure figcaption { color: var(--muted); font-size: .92rem; padding: 1rem .5rem 0; text-align: justify; text-align-last: left; hyphens: auto; }
 
 .theorem-card { margin-top: 1.75rem; border-left: 5px solid var(--teal); text-align: left; }
 .theorem-card .theorem-title { font-size: 1.08rem; font-weight: 800; margin-bottom: .6rem; display: flex; align-items: center; gap: .5rem; color: var(--teal); }
-.theorem-card p { text-align: justify; margin: 0; color: var(--ink); opacity: .88; }
+.theorem-card p { text-align: justify; text-align-last: left; hyphens: auto; margin: 0; color: var(--ink); opacity: .88; }
 
 .two-col-figures { display: grid; grid-template-columns: 5fr 7fr; gap: 1.25rem; margin-top: 1.75rem; align-items: start; }
 .two-col-figures figure { margin: 0; }
@@ -131,7 +141,7 @@ th, td { padding: .68rem .7rem; border-bottom: 1px solid var(--line); text-align
 th:first-child, td:first-child { text-align: left; }
 th { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; }
 tr.highlight-row td { color: var(--blue); font-weight: 800; background: rgba(47, 111, 176, .05); }
-.table-note { color: var(--muted); font-size: .88rem; margin-top: 1rem; text-align: center; }
+.table-note { color: var(--muted); font-size: .88rem; margin-top: 1rem; }
 .diverge { color: #c0392b; font-weight: 700; }
 
 /* Citation */
