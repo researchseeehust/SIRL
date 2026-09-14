@@ -105,7 +105,17 @@ h3 { font-size: 1.2rem; }
 .overview-cards .card { text-align: center; display: flex; flex-direction: column; align-items: center; }
 .overview-cards .card-icon { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; font-size: 1.35rem; margin-bottom: .9rem; color: white; }
 .overview-cards h3 { font-size: 1.02rem; margin-bottom: .5rem; }
-.overview-cards p { font-size: .92rem; text-align: center; }
+/* The card is a centring flex column, so a block child shrinks to its longest
+   line; the paragraph has to stretch before justify has any width to work
+   with. Icon and heading stay centred as their own flex items. */
+.overview-cards p {
+  font-size: .92rem;
+  align-self: stretch;
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
 
 .overview-video-wrap { margin-top: 2.5rem; }
 .video-frame { overflow: hidden; border-radius: 22px; background: linear-gradient(135deg, rgba(16, 24, 42, .92), rgba(47, 111, 176, .7)); border: 1px solid rgba(255, 255, 255, .5); padding: .7rem; }
