@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1426 1130" width="1426" height="1130" font-family="'Google Sans', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<defs>
+<marker id="ah" markerWidth="10" markerHeight="10" refX="7.5" refY="3.6" orient="auto"><path d="M0,0 L8,3.6 L0,7.2 Z" fill="#46536b"/></marker>
+<marker id="ah-red" markerWidth="10" markerHeight="10" refX="7.5" refY="3.6" orient="auto"><path d="M0,0 L8,3.6 L0,7.2 Z" fill="#c0392b"/></marker>
+<marker id="ah-grey" markerWidth="10" markerHeight="10" refX="7.5" refY="3.6" orient="auto"><path d="M0,0 L8,3.6 L0,7.2 Z" fill="#7a8494"/></marker>
+<filter id="soft" x="-14%" y="-30%" width="128%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#103154" flood-opacity="0.10"/></filter></defs>
+<rect width="1426" height="1130" fill="#ffffff"/>
+<rect x="24.0" y="24.0" width="1378.1" height="494.0" rx="16" ry="16" fill="#fbfcfe" stroke="#dfe5ee" stroke-width="1.6"/>
+<text x="52.0" y="62.0" text-anchor="start" font-size="16" font-weight="700" fill="#2b3542"><tspan>(a)  Per-agent online critic-only IRL / H∞ control loop</tspan></text>
+<rect x="1014.6" y="78.0" width="318.7" height="38.0" rx="16" ry="16" fill="#ffffff" stroke="#c3ccda" stroke-width="1.6" stroke-dasharray="5,4"/>
+<rect x="24.0" y="548.0" width="669.1" height="558.0" rx="16" ry="16" fill="#fbfcfe" stroke="#dfe5ee" stroke-width="1.6"/>
+<text x="52.0" y="586.0" text-anchor="start" font-size="16" font-weight="700" fill="#2b3542"><tspan>(b)  Critic regressor &amp; history stack</tspan></text>
+<text x="52.0" y="610.0" text-anchor="start" font-size="12.5" font-weight="400" fill="#5b667a" font-style="italic"><tspan>expands the Critic NN → residual path of (a)</tspan></text>
+<rect x="733.1" y="548.0" width="669.1" height="558.0" rx="16" ry="16" fill="#fbfcfe" stroke="#dfe5ee" stroke-width="1.6"/>
+<text x="761.1" y="586.0" text-anchor="start" font-size="16" font-weight="700" fill="#2b3542"><tspan>(c)  Model-free off-policy extension</tspan></text>
+<text x="761.1" y="610.0" text-anchor="start" font-size="12.5" font-weight="400" fill="#5b667a" font-style="italic"><tspan>swaps Δφ</tspan><tspan dy="3.75" font-size="9.0">i</tspan><tspan dy="-3.75"> → Λ</tspan><tspan dy="3.75" font-size="9.0">i</tspan><tspan dy="-3.75">,  Ŵ</tspan><tspan dy="3.75" font-size="9.0">i</tspan><tspan dy="-3.75"> → </tspan><tspan font-weight="700">Z</tspan><tspan dy="3.75" font-size="9.0">i</tspan><tspan dy="-3.75">,  Θ</tspan><tspan dy="3.75" font-size="9.0">i</tspan><tspan dy="-3.75"> → Θ</tspan><tspan dy="3.75" font-size="9.0">i</tspan><tspan dy="-8.75" font-size="9.0">mf</tspan><tspan dy="5.00">  in eq. (35)</tspan></text>
+<rect x="114.0" y="146.0" width="288.2" height="132.0" rx="13" ry="13" fill="#fdeff2" stroke="#c0607a" stroke-width="1.7" filter="url(#soft)"/>
+<text x="258.1" y="176.0" text-anchor="middle" font-size="16.0" font-weight="700" fill="#10182a"><tspan>Virtual leader + graph G</tspan></text>
+<text x="258.1" y="201.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>q</tspan><tspan dy="3.90" font-size="9.4">0</tspan><tspan dy="-3.90">(t),  η</tspan><tspan dy="3.90" font-size="9.4">0</tspan><tspan dy="-3.90">(t)</tspan></text>
+<text x="258.1" y="226.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>neighbours j ∈ ℕ</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90">,  link b</tspan><tspan dy="3.90" font-size="9.4">i</tspan></text>
+<rect x="450.2" y="146.0" width="258.2" height="132.0" rx="13" ry="13" fill="#eaf2fb" stroke="#2f6fb0" stroke-width="1.7" filter="url(#soft)"/>
+<text x="579.3" y="176.0" text-anchor="middle" font-size="16.0" font-weight="700" fill="#10182a"><tspan>Neighbourhood error</tspan></text>
+<text x="579.3" y="201.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>δ</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90"> = [δ</tspan><tspan dy="3.90" font-size="9.4">pi</tspan><tspan dy="-3.90"> ; δ</tspan><tspan dy="3.90" font-size="9.4">ηi</tspan><tspan dy="-3.90">] ∈ ℝ</tspan><tspan dy="-5.20" font-size="9.4">5</tspan></text>
+<rect x="756.4" y="146.0" width="231.2" height="132.0" rx="13" ry="13" fill="#f3ecfa" stroke="#7b4fb0" stroke-width="1.7" filter="url(#soft)"/>
+<text x="872.0" y="176.0" text-anchor="middle" font-size="16.0" font-weight="700" fill="#10182a"><tspan>Critic NN</tspan></text>
+<text x="872.0" y="201.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>φ</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90">(δ</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90">) ∈ ℝ</tspan><tspan dy="-5.20" font-size="9.4">15</tspan><tspan dy="5.20">,  ∇φ</tspan><tspan dy="3.90" font-size="9.4">i</tspan></text>
+<text x="872.0" y="226.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>quadratic bases, eq. (25)</tspan></text>
+<rect x="822.0" y="250.0" width="100.1" height="20" rx="10" ry="10" fill="#7b4fb0" opacity="0.13"/>
+<text x="872.0" y="264.5" text-anchor="middle" font-size="11.5" font-weight="600" fill="#7b4fb0"><tspan>detail in (b)</tspan></text>
+<rect x="1035.7" y="146.0" width="276.5" height="132.0" rx="13" ry="13" fill="#fdf3e6" stroke="#c07a1e" stroke-width="1.7" filter="url(#soft)"/>
+<text x="1173.9" y="176.0" text-anchor="middle" font-size="16.0" font-weight="700" fill="#10182a"><tspan>IRL Bellman residual Ψ</tspan><tspan dy="4.80" font-size="11.5">i</tspan></text>
+<text x="1173.9" y="201.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>Ψ</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90"> = Δφ</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-9.10" font-size="9.4">T</tspan><tspan dy="5.20"> Ŵ</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90"> + ϱ</tspan><tspan dy="3.90" font-size="9.4">i</tspan></text>
+<text x="1173.9" y="226.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>T-window + experience replay</tspan></text>
+<rect x="465.1" y="352.0" width="228.5" height="132.0" rx="13" ry="13" fill="#eaf6ec" stroke="#2e8b3f" stroke-width="1.7" filter="url(#soft)"/>
+<text x="579.3" y="382.0" text-anchor="middle" font-size="16.0" font-weight="700" fill="#10182a"><tspan>WMR plant</tspan></text>
+<text x="579.3" y="407.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>ṗ</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90"> = H</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90">(p</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90">) η</tspan><tspan dy="3.90" font-size="9.4">i</tspan></text>
+<text x="579.3" y="432.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>driven by û</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90">, ϑ̂</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90">, Itô noise</tspan></text>
+<rect x="795.2" y="352.0" width="153.6" height="132.0" rx="13" ry="13" fill="#fceae7" stroke="#c0392b" stroke-width="1.7" filter="url(#soft)"/>
+<text x="872.0" y="382.0" text-anchor="middle" font-size="16.0" font-weight="700" fill="#10182a"><tspan>H∞ policy</tspan></text>
+<text x="872.0" y="407.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>û</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90">   eq. (32)</tspan></text>
+<text x="872.0" y="432.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>ϑ̂</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90">   eq. (33)</tspan></text>
+<rect x="1059.3" y="352.0" width="229.1" height="132.0" rx="13" ry="13" fill="#e6f5f1" stroke="#1e8a72" stroke-width="1.7" filter="url(#soft)"/>
+<text x="1173.9" y="382.0" text-anchor="middle" font-size="16.0" font-weight="700" fill="#10182a"><tspan>Adaptive law</tspan></text>
+<text x="1173.9" y="407.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>dŴ</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90">/dt = −α</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90">(⋯)Ψ</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90"> + ξ</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90">Θ</tspan><tspan dy="3.90" font-size="9.4">i</tspan></text>
+<text x="1173.9" y="432.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>eq. (35)</tspan></text>
+<rect x="1107.7" y="456.0" width="132.4" height="20" rx="10" ry="10" fill="#1e8a72" opacity="0.13"/>
+<text x="1173.9" y="470.5" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1e8a72"><tspan>model-free in (c)</tspan></text>
+<path d="M 402.2 212.0 L 443.2 212.0" fill="none" stroke="#46536b" stroke-width="2.0" marker-end="url(#ah)"/>
+<path d="M 708.4 212.0 L 749.4 212.0" fill="none" stroke="#46536b" stroke-width="2.0" marker-end="url(#ah)"/>
+<path d="M 987.7 212.0 L 1028.7 212.0" fill="none" stroke="#46536b" stroke-width="2.0" marker-end="url(#ah)"/>
+<text x="1173.9" y="102.0" text-anchor="middle" font-size="12.5" font-weight="400" fill="#5b667a" font-style="italic"><tspan>neighbour data:   δ</tspan><tspan dy="3.75" font-size="9.0">j</tspan><tspan dy="-3.75">, ∇φ</tspan><tspan dy="3.75" font-size="9.0">j</tspan><tspan dy="-3.75"> → Θ</tspan><tspan dy="3.75" font-size="9.0">i</tspan><tspan dy="-3.75">       û</tspan><tspan dy="3.75" font-size="9.0">j</tspan><tspan dy="-3.75">, ϑ̂</tspan><tspan dy="3.75" font-size="9.0">j</tspan><tspan dy="-3.75"> → ϱ</tspan><tspan dy="3.75" font-size="9.0">i</tspan></text>
+<path d="M 1173.9 116.0 L 1173.9 139.0" fill="none" stroke="#7a8494" stroke-width="1.8" stroke-dasharray="5,4" marker-end="url(#ah-grey)"/>
+<path d="M 1173.9 278.0 L 1173.9 345.0" fill="none" stroke="#46536b" stroke-width="2.0" marker-end="url(#ah)"/>
+<rect x="1209.2" y="301.0" width="137.4" height="21" rx="7" ry="7" fill="#fbfcfe" opacity="0.97"/>
+<text x="1277.9" y="316.5" text-anchor="middle" font-size="12.5" font-weight="500" fill="#46536b" font-style="italic"><tspan>Ψ</tspan><tspan dy="3.75" font-size="9.0">i</tspan><tspan dy="-3.75">,  history stack Z</tspan><tspan dy="3.75" font-size="9.0">i</tspan></text>
+<path d="M 1059.3 418.0 L 955.9 418.0" fill="none" stroke="#46536b" stroke-width="2.0" marker-end="url(#ah)"/>
+<rect x="987.7" y="384.0" width="32.9" height="21" rx="7" ry="7" fill="#fbfcfe" opacity="0.97"/>
+<text x="1004.1" y="399.5" text-anchor="middle" font-size="12.5" font-weight="500" fill="#46536b" font-style="italic"><tspan>Ŵ</tspan><tspan dy="3.75" font-size="9.0">i</tspan></text>
+<path d="M 795.2 418.0 L 700.6 418.0" fill="none" stroke="#46536b" stroke-width="2.0" marker-end="url(#ah)"/>
+<rect x="720.3" y="384.0" width="48.1" height="21" rx="7" ry="7" fill="#fbfcfe" opacity="0.97"/>
+<text x="744.4" y="399.5" text-anchor="middle" font-size="12.5" font-weight="500" fill="#46536b" font-style="italic"><tspan>û</tspan><tspan dy="3.75" font-size="9.0">i</tspan><tspan dy="-3.75">, ϑ̂</tspan><tspan dy="3.75" font-size="9.0">i</tspan></text>
+<path d="M 579.3 352.0 L 579.3 285.0" fill="none" stroke="#c0392b" stroke-width="2.0" marker-end="url(#ah-red)"/>
+<rect x="387.4" y="301.0" width="147.8" height="21" rx="7" ry="7" fill="#fbfcfe" opacity="0.97"/>
+<text x="461.3" y="316.5" text-anchor="middle" font-size="12.5" font-weight="500" fill="#c0392b" font-style="italic"><tspan>state feedback  p</tspan><tspan dy="3.75" font-size="9.0">i</tspan><tspan dy="-3.75">, η</tspan><tspan dy="3.75" font-size="9.0">i</tspan></text>
+<rect x="141.5" y="644.0" width="231.2" height="79.0" rx="13" ry="13" fill="#f3ecfa" stroke="#7b4fb0" stroke-width="1.7" filter="url(#soft)"/>
+<text x="257.2" y="674.0" text-anchor="middle" font-size="16.0" font-weight="700" fill="#10182a"><tspan>φ</tspan><tspan dy="4.80" font-size="11.5">i</tspan><tspan dy="-4.80">(δ</tspan><tspan dy="4.80" font-size="11.5">i</tspan><tspan dy="-4.80">)</tspan></text>
+<text x="257.2" y="699.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>quadratic bases, eq. (25)</tspan></text>
+<rect x="416.8" y="644.0" width="158.8" height="79.0" rx="13" ry="13" fill="#f3ecfa" stroke="#7b4fb0" stroke-width="1.7" filter="url(#soft)"/>
+<text x="496.2" y="674.0" text-anchor="middle" font-size="16.0" font-weight="700" fill="#10182a"><tspan>Δφ</tspan><tspan dy="4.80" font-size="11.5">i</tspan><tspan dy="-4.80">(t)</tspan></text>
+<text x="496.2" y="699.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>φ</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90">(t) − φ</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90">(t−T)</tspan></text>
+<path d="M 372.8 683.5 L 409.8 683.5" fill="none" stroke="#46536b" stroke-width="2.0" marker-end="url(#ah)"/>
+<path d="M 496.2 723.0 L 496.2 778.0" fill="none" stroke="#46536b" stroke-width="2.0" marker-end="url(#ah)"/>
+<text x="508.2" y="759.0" text-anchor="start" font-size="12" font-weight="400" fill="#5b667a" font-style="italic"><tspan>recorded</tspan></text>
+<rect x="60.0" y="785.0" width="597.1" height="129.0" rx="13" ry="13" fill="#fdf3e6" stroke="#c07a1e" stroke-width="1.7" filter="url(#soft)"/>
+<text x="358.5" y="815.0" text-anchor="middle" font-size="16.0" font-weight="700" fill="#10182a"><tspan>History stack  Z</tspan><tspan dy="4.80" font-size="11.5">i</tspan></text>
+<text x="358.5" y="840.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>Z</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90"> = { Δφ̄</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-9.10" font-size="9.4">1</tspan><tspan dy="5.20">, …, Δφ̄</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-9.10" font-size="9.4">l</tspan><tspan dy="5.20"> },   rank(Z</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90">) = L = 15</tspan></text>
+<text x="358.5" y="865.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>l = 20 &gt; L stored samples</tspan></text>
+<text x="358.5" y="890.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>replaces persistence of excitation</tspan></text>
+<text x="60.0" y="948.0" text-anchor="start" font-size="12.5" font-weight="400" fill="#5b667a" font-style="italic"><tspan>Checkable on the recorded data — not an a-priori</tspan></text>
+<text x="60.0" y="968.0" text-anchor="start" font-size="12.5" font-weight="400" fill="#5b667a" font-style="italic"><tspan>requirement on the trajectory.</tspan></text>
+<rect x="818.3" y="644.0" width="219.1" height="104.0" rx="13" ry="13" fill="#fceae7" stroke="#c0392b" stroke-width="1.7" filter="url(#soft)"/>
+<text x="927.8" y="674.0" text-anchor="middle" font-size="16.0" font-weight="700" fill="#10182a"><tspan>Behaviour signal</tspan></text>
+<text x="927.8" y="699.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>u</tspan><tspan dy="3.90" font-size="9.4">j</tspan><tspan dy="-3.90"> = û</tspan><tspan dy="3.90" font-size="9.4">j</tspan><tspan dy="-3.90"> + e</tspan><tspan dy="3.90" font-size="9.4">j</tspan></text>
+<text x="927.8" y="724.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>bounded probe e</tspan><tspan dy="3.90" font-size="9.4">j</tspan></text>
+<rect x="1081.4" y="644.0" width="235.5" height="104.0" rx="13" ry="13" fill="#e6f5f1" stroke="#1e8a72" stroke-width="1.7" filter="url(#soft)"/>
+<text x="1199.2" y="674.0" text-anchor="middle" font-size="16.0" font-weight="700" fill="#10182a"><tspan>Target policy</tspan></text>
+<text x="1199.2" y="699.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>û</tspan><tspan dy="3.90" font-size="9.4">j</tspan><tspan dy="-3.90">,  ϑ̂</tspan><tspan dy="3.90" font-size="9.4">j</tspan></text>
+<text x="1199.2" y="724.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>actor NN, current weights</tspan></text>
+<path d="M 927.8 748.0 C 927.8 772.0, 953.0 784.0, 953.0 803.0" fill="none" stroke="#46536b" stroke-width="2.0" marker-end="url(#ah)"/>
+<path d="M 1199.2 748.0 C 1199.2 772.0, 1182.2 784.0, 1182.2 803.0" fill="none" stroke="#46536b" stroke-width="2.0" marker-end="url(#ah)"/>
+<rect x="781.1" y="810.0" width="573.1" height="129.0" rx="13" ry="13" fill="#fdf3e6" stroke="#c07a1e" stroke-width="1.7" filter="url(#soft)"/>
+<text x="1067.6" y="840.0" text-anchor="middle" font-size="16.0" font-weight="700" fill="#10182a"><tspan>Off-policy Bellman equation</tspan></text>
+<text x="1067.6" y="865.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>Λ</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90">(t)</tspan><tspan dy="-5.20" font-size="9.4">T</tspan><tspan dy="5.20"> </tspan><tspan font-weight="700">Z</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90"> + ϱ</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90">(t) = ε</tspan><tspan dy="3.90" font-size="9.4">Bi</tspan><tspan dy="-3.90">(t)    eq. (48)</tspan></text>
+<text x="1067.6" y="890.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>g</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90">, k</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90"> lumped into </tspan><tspan font-weight="700">Z</tspan><tspan dy="3.90" font-size="9.4">i</tspan></text>
+<text x="1067.6" y="915.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>drift f</tspan><tspan dy="3.90" font-size="9.4">ei</tspan><tspan dy="-3.90"> and diffusion Σ</tspan><tspan dy="3.90" font-size="9.4">i</tspan><tspan dy="-3.90"> cancel</tspan></text>
+<path d="M 1067.6 939.0 L 1067.6 986.0" fill="none" stroke="#46536b" stroke-width="2.0" marker-end="url(#ah)"/>
+<rect x="826.1" y="993.0" width="483.1" height="79.0" rx="13" ry="13" fill="#eaf6ec" stroke="#2e8b3f" stroke-width="1.7" filter="url(#soft)"/>
+<text x="1067.6" y="1023.0" text-anchor="middle" font-size="16.0" font-weight="700" fill="#10182a"><tspan>Model-free residual  Ψ</tspan><tspan dy="4.80" font-size="11.5">i</tspan><tspan dy="-11.20" font-size="11.5">mf</tspan></text>
+<text x="1067.6" y="1048.0" text-anchor="middle" font-size="13.0" font-weight="400" fill="#3a4552"><tspan>drop-in inside the same adaptive law, eq. (35)</tspan></text>
+</svg>
