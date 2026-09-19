@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Stochastic Integral Reinforcement Learning for Distributed H-infinity Optimal Formation Tracking of Multi-Agent Wheeled Mobile Robots">
+  <meta name="keywords"
+    content="Stochastic Integral Reinforcement Learning, Multi-Agent Systems, Wheeled Mobile Robots, H-infinity Control, Formation Tracking">
+  <title>SIRL | Distributed H&infin; Formation Tracking</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/sirl.css">
+
+  <script>
+    MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" aria-label="Primary navigation">
+    <nav class="nav-shell">
+      <a class="brand" href="#top">
+        <img src="./images/logobk.svg" alt="HUST">
+        <span class="brand-sirl">SIRL</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      <div class="nav-links" data-nav-links>
+        <a href="#overview">Overview</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#learning">Critic Learning</a>
+        <a href="#modelfree">Model-Free</a>
+        <a href="#citation">Citation</a>
+      </div>
+    </nav>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+  </header>
+
+  <main id="main">
+    <section id="top" class="hero site-section">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-shell">
+        <h1>
+          Stochastic Integral Reinforcement Learning for Distributed
+          $H_\infty$ Optimal Formation Tracking of Multi-Agent Wheeled Mobile Robots
+        </h1>
+
+        <p class="authors">
+          <a href="https://www.linkedin.com/in/thaixuankhanh/">Khanh Thai</a><sup>1*</sup>,
+          <a href="https://huy-quang-dao.github.io/">Huy Dao</a><sup>1*</sup>,
+          <a href="https://scholar.google.com/citations?user=rkO7JP4AAAAJ&hl=en">Nga Thi-Thuy Vu</a><sup>1*</sup>
+        </p>
+        <p class="affiliations"><sup>1</sup>School of Electrical &amp; Electronic Engineering, Hanoi University of Science and Technology (HUST), Vietnam</p>
+        <p class="footnote"><sup>*</sup>Equal contribution</p>
+
+        <div class="hero-logo">
+          <img src="./images/logobk.svg" alt="Hanoi University of Science and Technology">
+        </div>
+
+        <!-- Manuscript under anonymous review: the Paper button intentionally does not
+             link out to any PDF (it just returns to the top of this page), and Code is
+             shown as a disabled "coming soon" placeholder until the repository is public. -->
+        <div class="hero-actions">
+          <a href="#top" class="btn primary">
+            <span class="icon"><i class="fas fa-file-pdf"></i></span> Paper
+          </a>
+          <span class="btn btn-disabled" aria-disabled="true" title="Code will be released after the review process">
+            <span class="icon"><i class="fas fa-code"></i></span> Code
+            <span class="badge-soon">Coming soon</span>
+          </span>
+        </div>
+
+        <div class="metric-chips" aria-label="Key facts">
+          <span>Stochastic $H_\infty$ zero-sum game</span>
+          <span>Critic-only online IRL</span>
+          <span>Model-free learning</span>
+          <span>Mean-square UUB guarantee</span>
+        </div>
+
+        <div class="hero-visual">
+          <figure class="card">
+            <img src="./images/hero_overview.jpg"
+              alt="MuJoCo rendering of the full 50-second experiment: the leader's serpentine path (black) and the three agents' converging trajectories (red, blue, green), with 5/15/25/35/50 s markers and the converged rigid formation at the end">
+            <figcaption>
+              The full 50-s experiment at a glance: three wheeled mobile robots learn, online, to track a
+              serpentine virtual leader over a fixed communication graph &mdash; converging to a rigid formation
+              under It&ocirc; process noise and worst-case disturbances.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="overview" class="section-pad content-grid site-section">
+      <div class="section-heading">
+        <p class="eyebrow">Overview</p>
+        <h2>A genuinely stochastic $H_\infty$ formation-tracking game, solved online.</h2>
+        <p class="section-lede">
+          We cast distributed formation tracking for multi-agent wheeled mobile robots as a stochastic zero-sum
+          $H_\infty$ game &mdash; each agent driven by a genuine It&ocirc; SDE rather than an ODE &mdash; and solve
+          the resulting coupled stochastic HJI equations online with a critic-only, model-free reinforcement
+          learning scheme. Simulation confirms the guaranteed mean-square-bounded tracking in real time.
+        </p>
+      </div>
+
+      <div class="overview-cards">
+        <article class="card">
+          <span class="card-icon" style="background: linear-gradient(135deg,#2f6fb0,#4fb3d9);"><i class="fas fa-dice"></i></span>
+          <h3>Genuinely Stochastic $H_\infty$ Game</h3>
+          <p>Agents follow It&ocirc; SDEs, not ODEs &mdash; the coupled HJI equations gain a genuine
+            It&ocirc;-correction term that vanishes exactly as the noise does.</p>
+        </article>
+        <article class="card">
+          <span class="card-icon" style="background: linear-gradient(135deg,#7b4fb0,#b083e0);"><i class="fas fa-brain"></i></span>
+          <h3>Critic-Only Online IRL</h3>
+          <p>One critic per agent yields both the policy and the worst-case disturbance in closed form; a
+            historical-data adaptive law replaces persistence of excitation with a checkable rank test.</p>
+        </article>
+        <article class="card">
+          <span class="card-icon" style="background: linear-gradient(135deg,#c07a1e,#e0aa5c);"><i class="fas fa-unlink"></i></span>
+          <h3>Model-Free Learning</h3>
+          <p>An off-policy reformulation lumps the unknown input and diffusion channels into the agents' own
+            policies &mdash; a change of regressor, not of algorithm.</p>
+        </article>
+        <article class="card">
+          <span class="card-icon" style="background: linear-gradient(135deg,#1e8a72,#4fc2a3);"><i class="fas fa-shield-alt"></i></span>
+          <h3>Mean-Square UUB Guarantee</h3>
+          <p>Tracking and critic-weight errors are provably bounded in the mean-square sense, recovering the
+            deterministic result exactly as $\Sigma_i \to 0$.</p>
+        </article>
+      </div>
+
+      <div class="overview-video-wrap">
+        <div class="video-frame">
+          <video autoplay muted loop playsinline controls>
+            <source src="./static/videos/formation_demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p class="video-caption">
+          MuJoCo visualization of the paper's experiment: the virtual leader (gold beacon) traces the serpentine
+          reference while three follower WMRs self-assemble into the learned rigid formation. White links are the
+          live communication-graph edges.
+        </p>
+      </div>
+    </section>
+
+    <section id="method" class="section-pad content-grid site-section">
+      <div class="section-heading">
+        <p class="eyebrow">Method</p>
+        <h2>Coupled stochastic HJI equations, solved with critic-only IRL.</h2>
+        <p class="section-lede">
+          We cast distributed formation tracking as a stochastic zero-sum game and solve the resulting coupled
+          stochastic HJI equations online with a critic-only integral reinforcement learning (IRL) scheme.
+          Historical data replace persistence-of-excitation requirements, and the controller does not need the
+          drift dynamics of the augmented multi-agent system.
+        </p>
+      </div>
+
+      <figure class="pipeline-figure card">
+        <a href="./images/algorithm_diagram.svg" target="_blank" rel="noopener"
+           title="Open the diagram at full size">
+          <img src="./images/algorithm_diagram.svg"
+            alt="SIRL overview in three panels: (a) the per-agent online critic-only IRL / H-infinity control loop, (b) the critic regressor and history-stack construction, and (c) the model-free off-policy extension">
+        </a>
+        <figcaption>
+          <strong>SIRL overview.</strong>
+          (a) Per-agent loop: the neighbourhood error drives a critic whose Bellman residual and replayed history
+          feed the adaptive law (eq. 35), producing the $H_\infty$ policy and the worst-case disturbance.
+          (b) The critic bases $\phi_i(\delta_i)$ are recorded into a fixed-size history stack $Z_i$, whose rank
+          condition replaces persistence of excitation.
+          (c) The model-free extension lumps the unknown $g_i,k_i$ into an enlarged parameter $\mathcal{Z}_i$;
+          the drift $f_{ei}$ and diffusion $\Sigma_i$ cancel against the Bellman identity and are never identified.
+          <em>Click to open full size.</em>
+        </figcaption>
+      </figure>
+
+      <div class="card theorem-card">
+        <p class="theorem-title"><i class="fas fa-shield-alt"></i> Theorem 1 (Mean-Square UUB)</p>
+        <p>
+          Under the adaptive law (eq. 35) and the history-stack rank condition &mdash; with no further hypothesis
+          on the closed loop &mdash; the tracking error $\delta_i$ and critic-weight error $\tilde W_i$ are
+          ultimately uniformly bounded <em>in the mean-square sense</em>, with a bound that reduces exactly to the
+          deterministic pathwise result as $\Sigma_i \to 0$. The learned value, policy and worst-case disturbance
+          approach the Nash equilibrium to within a residual set &mdash;
+          $\mathbb{E}\|V_i^* - \hat V_i\|^2 < \epsilon_{V_i}$,
+          $\mathbb{E}\|u_i^* - \hat u_i\|^2 < \epsilon_{u_i}$,
+          $\mathbb{E}\|\vartheta_i^* - \hat\vartheta_i\|^2 < \epsilon_{\vartheta_i}$ &mdash; which shrinks as the
+          critic basis is refined, not as the noise vanishes.
+        </p>
+      </div>
+
+      <div class="two-col-figures">
+        <figure>
+          <img src="./images/graph.jpg" alt="Communication graph">
+          <figcaption>Communication topology</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/disturbance_rejection.jpg" alt="Disturbance rejection">
+          <figcaption>Disturbance rejection performance</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="results" class="section-pad content-grid site-section">
+      <div class="section-heading">
+        <p class="eyebrow">Results</p>
+        <h2>Accurate formation tracking under noise and adversarial disturbances.</h2>
+        <p class="section-lede">
+          The proposed SIRL controller achieves accurate formation tracking for wheeled mobile robots under
+          process noise and adversarial disturbances. Position and orientation errors converge, while critic
+          network weights remain bounded during online learning.
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+        <figure>
+          <img src="./images/ex.jpg" alt="Position error ex">
+          <figcaption>$e_x$ tracking error</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/ey.jpg" alt="Position error ey">
+          <figcaption>$e_y$ tracking error</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/etheta.jpg" alt="Orientation error">
+          <figcaption>$e_\theta$ tracking error</figcaption>
+        </figure>
+        <figure class="span-2">
+          <img src="./images/enorm.jpg" alt="Error norm">
+          <figcaption>Position-error norm</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/noise_sensitivity.jpg" alt="Noise sensitivity">
+          <figcaption>Noise sensitivity analysis</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/x.jpg" alt="x trajectories of leader and followers">
+          <figcaption>$x_i\ (i=1,2,3)$ and $x_0$</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/y.jpg" alt="y trajectories of leader and followers">
+          <figcaption>$y_i\ (i=1,2,3)$ and $y_0$</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/theta.jpg" alt="Heading trajectories of leader and followers">
+          <figcaption>$\theta_i\ (i=1,2,3)$ and $\theta_0$</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/V.jpg" alt="Estimated value functions">
+          <figcaption>Estimated value functions $\hat V_i$</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/vi.jpg" alt="Linear velocity control input">
+          <figcaption>Control input $v_i$</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/omegai.jpg" alt="Angular velocity control input">
+          <figcaption>Control input $\omega_i$</figcaption>
+        </figure>
+        <figure class="span-3">
+          <img src="./images/disturbance.jpg" alt="Estimated worst-case disturbance policy">
+          <figcaption>Estimated worst-case disturbance policy $\hat\vartheta_i$, dynamic-channel component.
+            Left: full horizon, dominated by the exploration signal over $[0,5]\,$s. Right: the settled
+            post-excitation behaviour.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="learning" class="section-pad content-grid site-section">
+      <div class="section-heading">
+        <p class="eyebrow">Online Critic Learning</p>
+        <h2>Critic weights converge online &mdash; no persistence of excitation required.</h2>
+        <p class="section-lede">
+          Critic neural-network weights converge online using historical data, without requiring persistence of
+          excitation. Ablation studies quantify the contribution of the reinforcement learning component.
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+        <figure>
+          <img src="./images/W1.jpg" alt="Critic weights W1">
+          <figcaption>Critic weights $W_1$</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/W2.jpg" alt="Critic weights W2">
+          <figcaption>Critic weights $W_2$</figcaption>
+        </figure>
+        <figure>
+          <img src="./images/W3.jpg" alt="Critic weights W3">
+          <figcaption>Critic weights $W_3$</figcaption>
+        </figure>
+        <figure class="span-3">
+          <img src="./images/ablation.jpg" alt="Ablation study">
+          <figcaption>Ablation: contribution of the RL component</figcaption>
+        </figure>
+      </div>
+
+      <div class="card table-card">
+        <p style="text-align:center; color: var(--muted); margin: 0 0 1rem;">
+          Disabling each component in turn, with topology, reference, noise realisation, and seed held fixed
+          (mean position-error norm $\bar{\|\delta\|}$ over $t>25\,$s; cost
+          $J=\sum_i\int_5^{50}(e_i^TQ_ie_i+u_i^{rT}R_{ii}u_i^r)\,dt$):
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Variant</th>
+              <th>Cost $J$</th>
+              <th>$\bar{\|\delta\|}$ (m)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight-row">
+              <td>Proposed (full)</td>
+              <td>4.38</td>
+              <td>0.026</td>
+            </tr>
+            <tr>
+              <td>Without Bellman-residual / replay terms</td>
+              <td>4.49</td>
+              <td>0.025</td>
+            </tr>
+            <tr>
+              <td>Without stabilizing term $\xi_i\Theta_i$</td>
+              <td class="diverge">diverges</td>
+              <td>&mdash;</td>
+            </tr>
+            <tr>
+              <td>Critic weights frozen at $\hat W_i(0)$</td>
+              <td class="diverge">diverges</td>
+              <td>&mdash;</td>
+            </tr>
+            <tr>
+              <td>Without learned policy $u_i^r$</td>
+              <td class="diverge">$1.5\times10^{8}$</td>
+              <td class="diverge">14.11</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">
+        The model-based feedforward alone cannot stabilise the formation (error grows past 14&nbsp;m without the
+        learned policy); the stabilizing term is what keeps the closed loop out of the divergent region; and the
+        Bellman-residual / experience-replay terms lower the cost by a further $\sim$2.4% at equal tracking
+        accuracy.
+      </p>
+
+      <div class="overview-video-wrap">
+        <div class="video-frame">
+          <video muted loop playsinline controls>
+            <source src="./static/videos/ablation_demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p class="video-caption">
+          Full critic-only IRL (left) versus the fixed feedforward alone, learned policy $u_i^r$ switched off
+          (right). This lightweight demo plant carries safety caps that prevent outright divergence, so what is
+          visible is the milder form of the same effect: a looser, laggier formation without the learned policy.
+        </p>
+      </div>
+    </section>
+
+    <section id="modelfree" class="section-pad content-grid site-section">
+      <div class="section-heading">
+        <p class="eyebrow">Model-Free Extension</p>
+        <h2>The same algorithm, run with no model at all.</h2>
+        <p class="section-lede">
+          Reading the stationarity conditions backwards lumps the unknown products $\nabla V_i^Tg_i$ and
+          $\nabla V_i^Tk_i$ into the agent's own policies; the graphical-game cross terms $\nabla V_i^Tg_j$ are
+          identified from data. The learning mechanism &mdash; residual, history stack, adaptive law &mdash; is
+          untouched.
+        </p>
+      </div>
+
+      <div class="overview-cards">
+        <article class="card">
+          <span class="card-icon" style="background: linear-gradient(135deg,#c07a1e,#e0aa5c);"><i class="fas fa-unlink"></i></span>
+          <h3>Nothing About the Plant Is Known</h3>
+          <p>Not just the drift $f_{ei}$ &mdash; the input channels $g_i,k_i$ and the diffusion $\Sigma_i$ are
+            unknown too, and no diffusion parameter is ever identified.</p>
+        </article>
+        <article class="card">
+          <span class="card-icon" style="background: linear-gradient(135deg,#1e8a72,#4fc2a3);"><i class="fas fa-check-double"></i></span>
+          <h3>Exact, Not Approximate</h3>
+          <p>The lumping matches the model-based regressor to $\sim\!10^{-15}$ window by window &mdash; exact,
+            not an approximation licensed by small residuals.</p>
+        </article>
+        <article class="card">
+          <span class="card-icon" style="background: linear-gradient(135deg,#2f6fb0,#4fb3d9);"><i class="fas fa-bolt"></i></span>
+          <h3>Cheaper, Despite More Parameters</h3>
+          <p>$0.89\,$ms per step against $1.72$&ndash;$1.81\,$ms model-based, while carrying up to $255$
+            parameters versus $15$: the extra parameters cost less than the matrix triples they replace.</p>
+        </article>
+        <article class="card">
+          <span class="card-icon" style="background: linear-gradient(135deg,#7b4fb0,#b083e0);"><i class="fas fa-shield-alt"></i></span>
+          <h3>Same Guarantee, Still Learning</h3>
+          <p>Theorem 1 carries over unchanged (Corollary 1), and online adaptation still cuts closed-loop cost
+            by $19\%$ against a frozen initialization &mdash; with no model at all.</p>
+        </article>
+      </div>
+
+      <div class="gallery-grid">
+        <figure class="span-3">
+          <img src="./images/modelfree.jpg"
+            alt="Normalised singular-value spectra of the model-free regressor for the three agents, comparing independent exploration, shared exploration, and the model-based regressor">
+          <figcaption>
+            <strong>The rank condition is attainable &mdash; but demands independent excitation.</strong>
+            Singular-value spectra of $\Lambda_i$ ($\dim(\mathcal{Z}_i)=95,255,175$) against the 15-dimensional
+            model-based $\Delta\phi_i$. Solid: independent exploration reaches full rank exactly. Dashed: probing
+            the disturbance channel with a scaled copy of the control probe &mdash; the natural shortcut &mdash;
+            fails the rank condition no matter how long the run.
+          </figcaption>
+        </figure>
+        <figure class="span-3">
+          <img src="./images/modelfree_closedloop.jpg"
+            alt="Online closed-loop run of the model-free algorithm: formation tracking error, model-free parameter norm, and learned actor output">
+          <figcaption>
+            <strong>Online closed-loop run with $f_{ei},g_i,k_i,\Sigma_i$ all unknown.</strong>
+            Left: tracking error, settling to the centimetre scale after exploration is withdrawn at $25\,$s.
+            Centre: $\|\mathcal{Z}_i\|$, still rising for agent 2 (coupled to both neighbours) &mdash; the
+            signature of ultimate boundedness under a finite basis, not convergence. Right: the learned actor
+            output $\hat u_i$.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="overview-video-wrap">
+        <div class="video-frame">
+          <video muted loop playsinline controls preload="metadata">
+            <source src="./static/videos/modelfree_demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p class="video-caption">
+          The model-free run of Algorithm 2, with $f_{ei},g_i,k_i,\Sigma_i$ all unavailable to the learner. The
+          unruly opening is the independent exploration the rank condition demands, not instability; probes are
+          withdrawn at $25\,$s, after which the error settles to $0.014$, $0.009$ and $0.006\,$m at $50\,$s.
+        </p>
+      </div>
+
+      <p class="table-note">
+        One caveat worth stating: the actor bases must depend on the measured configuration, not the
+        neighbourhood error alone. For a nonholonomic vehicle the ideal actor carries the heading through
+        $S(\theta_i)$, so the default basis in $\delta_i$ alone leaves relative errors of $24.1\%$, $29.3\%$
+        and $17.3\%$.
+      </p>
+    </section>
+
+    <section id="citation" class="section-pad content-grid site-section">
+      <div class="section-heading">
+        <p class="eyebrow">Citation</p>
+        <h2>Cite SIRL</h2>
+      </div>
+      <article class="card citation-card">
+        <pre><code>@misc{thai2026sirl,
+  title={Stochastic Integral Reinforcement Learning for Distributed $H_\infty$ Optimal Formation Tracking of Multi-Agent Wheeled Mobile Robots},
+  author={Thai, Khanh and Dao, Huy and Vu, Nga Thi-Thuy},
+  year={2026}
+}</code></pre>
+      </article>
+    </section>
+  </main>
+
+  <script src="./static/js/sirl.js" defer></script>
+</body>
+
+</html>
